@@ -1,12 +1,15 @@
 package com.safetynet.projet_5_safetynet_api.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Person {
 
 	private String firstName;
 	
 	private String lastName;
 	
-	private String adress;
+	private String address;
 	
 	private String city;
 	
@@ -39,15 +42,15 @@ public class Person {
 		
 	}
 	
-	public String getAdress() {
+	public String getAddress() {
 		
-		return adress;
+		return address;
 		
 	}
 	
-	public void setAdress(String adress) {
+	public void setAddress(String address) {
 		
-		this.adress = adress;
+		this.address = address;
 		
 	}
 	
@@ -75,13 +78,13 @@ public class Person {
 		
 	}
 	
-	public String getPhoneNumber() {
+	public String getPhone() {
 		
 		return phone;
 		
 	}
 	
-	public void setPhoneNumber(String phone) {
+	public void setPhone(String phone) {
 		
 		this.phone = phone;
 		

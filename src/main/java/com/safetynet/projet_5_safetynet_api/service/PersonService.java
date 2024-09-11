@@ -30,5 +30,11 @@ public class PersonService {
 		return savedPerson;
 		
 	}
+
+	public void deletePerson(Person person) throws StreamWriteException, DatabindException, IOException {
+		
+		personDAO.deletePerson(person);
+		
+	}
 	
 }

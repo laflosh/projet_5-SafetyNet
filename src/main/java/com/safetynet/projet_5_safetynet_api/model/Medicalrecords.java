@@ -1,12 +1,12 @@
 package com.safetynet.projet_5_safetynet_api.model;
 
-public class MedicalRecords {
+public class Medicalrecords {
 
 	private String firstName;
 	
 	private String lastName;
 	
-	private String birthday;
+	private String birthdate;
 	
 	private String[] medications;
 	
@@ -36,15 +36,15 @@ public class MedicalRecords {
 		
 	}
 	
-	public String getBirthday() {
+	public String getBirthdate() {
 		
-		return birthday;
+		return birthdate;
 		
 	}
 	
-	public void setBirthday(String birthday) {
+	public void setBirthdate(String birthdate) {
 		
-		this.birthday = birthday;
+		this.birthdate = birthdate;
 		
 	}
 	

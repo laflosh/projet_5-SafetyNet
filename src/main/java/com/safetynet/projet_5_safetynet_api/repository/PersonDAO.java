@@ -2,6 +2,7 @@ package com.safetynet.projet_5_safetynet_api.repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +42,7 @@ public class PersonDAO {
 		
 		if(elements == null) {
 			
-			logger.info("Fetching all persons saved in the JSON file.");
+			logger.info("Fetching all data saved in the JSON file.");
 			elements = objectMapper.readValue(data, ListOfElements.class);
 			
 		}
@@ -75,13 +76,45 @@ public class PersonDAO {
 	}
 	
 	/**
+	 * @param deletePerson
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamWriteException 
+	 */
+	public void deletePerson(Person deletePerson) throws StreamWriteException, DatabindException, IOException {
+
+		List<Person> persons = elements.getPersons();
+		
+		Iterator<Person> personsIterator = persons.iterator();
+		
+		while(personsIterator.hasNext()) {
+			
+			Person person = personsIterator.next();
+			
+			if(person.getFirstName().equals(deletePerson.getFirstName()) && person.getLastName().equals(deletePerson.getLastName())) {
+				
+				personsIterator.remove();
+				
+			}
+			
+		}
+		
+		logger.info("The person is deleted in the JSON file.");
+		saveElements();
+		
+	}
+	
+	/**
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
 	protected void saveElements() throws StreamWriteException, DatabindException, IOException {
 		
-		objectMapper.writeValue(data, elements);
+		logger.info("Saving all the data in the JSON file.");
+		objectMapper
+			.writerWithDefaultPrettyPrinter()
+			.writeValue(data, elements);
 		
 	}
 

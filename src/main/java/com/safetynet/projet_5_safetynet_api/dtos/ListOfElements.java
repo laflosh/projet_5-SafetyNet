@@ -5,8 +5,8 @@ package com.safetynet.projet_5_safetynet_api.dtos;
 
 import java.util.List;
 
-import com.safetynet.projet_5_safetynet_api.model.FireStations;
-import com.safetynet.projet_5_safetynet_api.model.MedicalRecords;
+import com.safetynet.projet_5_safetynet_api.model.Firestations;
+import com.safetynet.projet_5_safetynet_api.model.Medicalrecords;
 import com.safetynet.projet_5_safetynet_api.model.Person;
 
 /**
@@ -16,9 +16,9 @@ public class ListOfElements {
 
 	protected List<Person> persons;
 	
-	protected List<FireStations> fireStations;
+	protected List<Firestations> firestations;
 	
-	protected List<MedicalRecords> medicalRecords;
+	protected List<Medicalrecords> medicalrecords;
 	
 	public List<Person> getPersons() {
 		
@@ -32,27 +32,27 @@ public class ListOfElements {
 		
 	}
 	
-	public List<FireStations> getFireStations() {
+	public List<Firestations> getFirestations() {
 		
-		return fireStations;
-		
-	}
-	
-	public void setFireStations(List<FireStations> fireStations) {
-		
-		this.fireStations = fireStations;
+		return firestations;
 		
 	}
 	
-	public List<MedicalRecords> getMedicalRecords() {
+	public void setFirestations(List<Firestations> firestations) {
 		
-		return medicalRecords;
+		this.firestations = firestations;
 		
 	}
 	
-	public void setMedicalRecords(List<MedicalRecords> medicalRecords) {
+	public List<Medicalrecords> getMedicalrecords() {
 		
-		this.medicalRecords = medicalRecords;
+		return medicalrecords;
+		
+	}
+	
+	public void setMedicalrecords(List<Medicalrecords> medicalrecords) {
+		
+		this.medicalrecords = medicalrecords;
 		
 	}
 	

@@ -1,6 +1,6 @@
 package com.safetynet.projet_5_safetynet_api.model;
 
-public class FireStations {
+public class Firestations {
 
 	private String address;
 	

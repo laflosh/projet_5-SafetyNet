@@ -104,6 +104,36 @@ public class PersonDAO {
 		
 	}
 	
+	public Person updatePerson(Person updatePerson) throws StreamWriteException, DatabindException, IOException {
+	
+		List<Person> persons = elements.getPersons();
+		
+		Iterator<Person> personsIterator = persons.iterator();
+		
+		while(personsIterator.hasNext()) {
+			
+			Person person = personsIterator.next();
+			
+			if(person.getFirstName().equals(updatePerson.getFirstName()) && person.getLastName().equals(updatePerson.getLastName())) {
+				
+					person.setAddress(updatePerson.getAddress());
+					person.setCity(updatePerson.getCity());
+					person.setZip(updatePerson.getZip());
+					person.setPhone(updatePerson.getPhone());
+					person.setEmail(updatePerson.getEmail());
+					
+					updatePerson = person;
+				
+			}
+				
+		}
+			
+		logger.info("The person is updated in the JSON file.");
+		saveElements();
+		
+		return updatePerson;
+	}
+	
 	/**
 	 * @throws StreamWriteException
 	 * @throws DatabindException

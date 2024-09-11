@@ -57,45 +57,21 @@ public class PersonDAO {
 	public Iterable<Person> findAllPersons() throws StreamReadException, DatabindException, IOException {
 
 		logger.info("Return all persons saved in the JSON file.");
-		
 		return elements.getPersons();
 		
 	}
 
 	public Person savePerson(Person person) throws StreamWriteException, DatabindException, IOException {
 		
-		// ici faire la modification d'une personne
 		List<Person> persons = elements.getPersons();
 		
 		persons.add(person);
 		
 		saveElements();
 		
+		logger.info("The person is saved in the JSON file.");
 		return person;
 		
-		/*
-		try {
-			
-			String personAsJson = objectMapper.writeValueAsString(person);
-			JsonNode personNode = objectMapper.readTree(personAsJson);
-			
-			JsonNode root = objectMapper.readTree(data);
-			JsonNode persons = root.path("persons");
-			
-			objectMapper.writeValue(persons, person);
-			
-			logger.info("The person is saved in the JSON file.");
-			
-			return personAsJson;
-			
-		} catch(IOException e) {
-			
-			logger.error("Error saving a person in the JSON file",e);
-			
-			return null;
-			
-		}
-		*/
 	}
 	
 	/**

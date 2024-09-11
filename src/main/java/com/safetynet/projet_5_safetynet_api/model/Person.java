@@ -1,8 +1,5 @@
 package com.safetynet.projet_5_safetynet_api.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Person {
 
 	private String firstName;

@@ -29,4 +29,10 @@ public class MedicalrecordService {
 		
 	}
 
+	public void deleteAMedicalrecord(String firstName, String lastName) throws StreamWriteException, DatabindException, IOException {
+		
+		medicalrecordDAO.deleteAMedicalrecord(firstName, lastName);
+		
+	}
+
 }

@@ -1,6 +1,5 @@
 package com.safetynet.projet_5_safetynet_api.repository;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -12,9 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
+import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
 
@@ -24,11 +23,9 @@ public class MedicalrecordDAO {
 	private static Logger logger = LogManager.getLogger("MedicalrecordsDAO");
 	
 	@Autowired
-	ObjectMapper objectMapper;
+	DataManager dataManager;
 	
 	ListOfElements elements = null;
-	
-	private File data = new File("C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json");
 	
 	/**
 	 * @throws StreamReadException
@@ -41,7 +38,7 @@ public class MedicalrecordDAO {
 		if(elements == null) {
 			
 			logger.info("Fetching all data saved in the JSON file.");
-			elements = objectMapper.readValue(data, ListOfElements.class);
+			elements = dataManager.getAllData();
 			
 		}
 		
@@ -66,23 +63,9 @@ public class MedicalrecordDAO {
 		
 		medicalrecords.add(medicalrecord);
 		
-		saveElements();
+		dataManager.writeData(elements);;
 		
 		return medicalrecord;
 	}
 	
-	/**
-	 * @throws StreamWriteException
-	 * @throws DatabindException
-	 * @throws IOException
-	 */
-	protected void saveElements() throws StreamWriteException, DatabindException, IOException {
-		
-		logger.info("Saving all the data in the JSON file.");
-		objectMapper
-			.writerWithDefaultPrettyPrinter()
-			.writeValue(data, elements);
-		
-	}
-
 }

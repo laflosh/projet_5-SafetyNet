@@ -1,6 +1,5 @@
 package com.safetynet.projet_5_safetynet_api.repository;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -13,9 +12,9 @@ import org.springframework.stereotype.Repository;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Person;
+import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
 
@@ -25,11 +24,9 @@ public class PersonDAO {
 	private static Logger logger = LogManager.getLogger("PersonDAO");
 	
 	@Autowired
-	ObjectMapper objectMapper;
+	DataManager dataManager;
 	
 	ListOfElements elements = null;
-	
-	private File data = new File("C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json");
 	
 	/**
 	 * @throws IOException 
@@ -43,7 +40,7 @@ public class PersonDAO {
 		if(elements == null) {
 			
 			logger.info("Fetching all data saved in the JSON file.");
-			elements = objectMapper.readValue(data, ListOfElements.class);
+			elements = dataManager.getAllData();
 			
 		}
 		
@@ -68,7 +65,7 @@ public class PersonDAO {
 		
 		persons.add(person);
 		
-		saveElements();
+		dataManager.writeData(elements);
 		
 		logger.info("The person is saved in the JSON file.");
 		return person;
@@ -104,7 +101,7 @@ public class PersonDAO {
 		}
 		
 		logger.info("The person is deleted in the JSON file.");
-		saveElements();
+		dataManager.writeData(elements);
 		
 	}
 	
@@ -133,23 +130,9 @@ public class PersonDAO {
 		}
 			
 		logger.info("The person is updated in the JSON file.");
-		saveElements();
+		dataManager.writeData(elements);
 		
 		return updatePerson;
-	}
-	
-	/**
-	 * @throws StreamWriteException
-	 * @throws DatabindException
-	 * @throws IOException
-	 */
-	protected void saveElements() throws StreamWriteException, DatabindException, IOException {
-		
-		logger.info("Saving all the data in the JSON file.");
-		objectMapper
-			.writerWithDefaultPrettyPrinter()
-			.writeValue(data, elements);
-		
 	}
 
 }

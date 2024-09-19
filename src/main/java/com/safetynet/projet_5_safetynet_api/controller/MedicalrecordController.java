@@ -85,6 +85,13 @@ public class MedicalrecordController {
 		
 	}
 	
+	/**
+	 * @param medicalrecord
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	@PutMapping("/medicalrecord")
 	public ResponseEntity<?> updateAMedicalRecord(@RequestBody Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException{
 		

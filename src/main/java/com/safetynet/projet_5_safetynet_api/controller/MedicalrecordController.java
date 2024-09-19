@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -42,6 +43,14 @@ public class MedicalrecordController {
 		
 	}
 	
+	/**
+	 * @param medicalrecord
+	 * @param ucb
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	@PostMapping("/medicalrecord")
 	public ResponseEntity<?> saveAMedicalrecord(@RequestBody Medicalrecord medicalrecord,  UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException{
 		
@@ -61,11 +70,33 @@ public class MedicalrecordController {
 		
 	}
 	
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	@DeleteMapping("/medicalrecord")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteAMedicalrecord(@RequestParam(required = false, value = "firstName") String firstName, @RequestParam(required = false, value = "lastName") String lastName) throws StreamWriteException, DatabindException, IOException {
 		
 		medicalrecordService.deleteAMedicalrecord(firstName, lastName);
+		
+	}
+	
+	@PutMapping("/medicalrecord")
+	public ResponseEntity<?> updateAMedicalRecord(@RequestBody Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException{
+		
+	if(medicalrecord == null) {
+			
+			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			
+		} else {
+			
+			return ResponseEntity.ok().body(medicalrecordService.updateAMedicalRecord(medicalrecord));
+			
+		}
 		
 	}
 	

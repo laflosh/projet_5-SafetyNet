@@ -35,4 +35,10 @@ public class MedicalrecordService {
 		
 	}
 
+	public Medicalrecord updateAMedicalRecord(Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException {
+		
+		return medicalrecordDAO.updateAMedicalrecord(medicalrecord);
+		
+	}
+
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
@@ -53,6 +54,19 @@ public class FirestationDAO {
 
 		logger.info("Return all firestations saved in the JSON file.");
 		return elements.getFirestations();
+		
+	}
+	
+	public Firestation saveAFirestation(Firestation firestation) throws StreamWriteException, DatabindException, IOException {
+		
+		List<Firestation> firestations = elements.getFirestations();
+		
+		firestations.add(firestation);
+		
+		dataManager.writeData(elements);
+		
+		logger.info("The firestation is saved in the JSON file.");
+		return firestation;
 		
 	}
 

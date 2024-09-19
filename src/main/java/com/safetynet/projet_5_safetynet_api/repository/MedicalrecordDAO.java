@@ -60,6 +60,17 @@ public class MedicalrecordDAO {
 		
 	}
 	
+	public Object saveAMedicalrecord(Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException {
+
+		List<Medicalrecord> medicalrecords = elements.getMedicalrecords();
+		
+		medicalrecords.add(medicalrecord);
+		
+		saveElements();
+		
+		return medicalrecord;
+	}
+	
 	/**
 	 * @throws StreamWriteException
 	 * @throws DatabindException

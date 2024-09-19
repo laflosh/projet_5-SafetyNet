@@ -2,8 +2,8 @@ package com.safetynet.projet_5_safetynet_api.dtos;
 
 import java.util.List;
 
-import com.safetynet.projet_5_safetynet_api.model.Firestations;
-import com.safetynet.projet_5_safetynet_api.model.Medicalrecords;
+import com.safetynet.projet_5_safetynet_api.model.Firestation;
+import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.model.Person;
 
 /**
@@ -13,9 +13,9 @@ public class ListOfElements {
 
 	protected List<Person> persons;
 	
-	protected List<Firestations> firestations;
+	protected List<Firestation> firestations;
 	
-	protected List<Medicalrecords> medicalrecords;
+	protected List<Medicalrecord> medicalrecords;
 	
 	public List<Person> getPersons() {
 		
@@ -29,25 +29,25 @@ public class ListOfElements {
 		
 	}
 	
-	public List<Firestations> getFirestations() {
+	public List<Firestation> getFirestations() {
 		
 		return firestations;
 		
 	}
 	
-	public void setFirestations(List<Firestations> firestations) {
+	public void setFirestations(List<Firestation> firestations) {
 		
 		this.firestations = firestations;
 		
 	}
 	
-	public List<Medicalrecords> getMedicalrecords() {
+	public List<Medicalrecord> getMedicalrecords() {
 		
 		return medicalrecords;
 		
 	}
 	
-	public void setMedicalrecords(List<Medicalrecords> medicalrecords) {
+	public void setMedicalrecords(List<Medicalrecord> medicalrecords) {
 		
 		this.medicalrecords = medicalrecords;
 		

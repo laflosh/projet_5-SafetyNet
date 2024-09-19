@@ -14,12 +14,12 @@ import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
-import com.safetynet.projet_5_safetynet_api.model.Medicalrecords;
+import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 
 import jakarta.annotation.PostConstruct;
 
 @Repository
-public class MedicalrecordsDAO {
+public class MedicalrecordDAO {
 
 	private static Logger logger = LogManager.getLogger("MedicalrecordsDAO");
 	
@@ -53,7 +53,7 @@ public class MedicalrecordsDAO {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	public List<Medicalrecords> getAllMedicalrecords() throws StreamReadException, DatabindException, IOException {
+	public List<Medicalrecord> getAllMedicalrecords() throws StreamReadException, DatabindException, IOException {
 		
 		logger.info("Return all medicalrecords saved in the JSON file.");
 		return elements.getMedicalrecords();

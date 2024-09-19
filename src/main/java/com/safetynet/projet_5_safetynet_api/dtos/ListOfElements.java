@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.safetynet.projet_5_safetynet_api.dtos;
 
 import java.util.List;

@@ -55,7 +55,7 @@ public class PersonDAO {
 	 * @throws DatabindException 
 	 * @throws StreamReadException 
 	 */
-	public Iterable<Person> findAllPersons() throws StreamReadException, DatabindException, IOException {
+	public List<Person> findAllPersons() throws StreamReadException, DatabindException, IOException {
 
 		logger.info("Return all persons saved in the JSON file.");
 		return elements.getPersons();
@@ -81,9 +81,13 @@ public class PersonDAO {
 	 * @throws DatabindException 
 	 * @throws StreamWriteException 
 	 */
-	public void deletePerson(Person deletePerson) throws StreamWriteException, DatabindException, IOException {
+	public void deletePerson(String firstName,String lastName) throws StreamWriteException, DatabindException, IOException {
 
 		List<Person> persons = elements.getPersons();
+		
+		//persons.removeIf(person -> person.getFirstName().equals(deletePerson.getFirstName()) && person.getLastName().equals(deletePerson.getLastName()));
+		
+		//persons.stream().forEach(null);
 		
 		Iterator<Person> personsIterator = persons.iterator();
 		
@@ -91,7 +95,7 @@ public class PersonDAO {
 			
 			Person person = personsIterator.next();
 			
-			if(person.getFirstName().equals(deletePerson.getFirstName()) && person.getLastName().equals(deletePerson.getLastName())) {
+			if(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
 				
 				personsIterator.remove();
 				

@@ -1,6 +1,7 @@
 package com.safetynet.projet_5_safetynet_api.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PersonService {
 	@Autowired
 	PersonDAO personDAO;
 
-	public Iterable<Person> getPersons() throws StreamReadException, DatabindException, IOException {
+	public List<Person> getPersons() throws StreamReadException, DatabindException, IOException {
 		
 		return personDAO.findAllPersons();
 		
@@ -31,9 +32,9 @@ public class PersonService {
 		
 	}
 
-	public void deletePerson(Person person) throws StreamWriteException, DatabindException, IOException {
+	public void deletePerson(String firstName, String lastName) throws StreamWriteException, DatabindException, IOException {
 		
-		personDAO.deletePerson(person);
+		personDAO.deletePerson(firstName,lastName);
 		
 	}
 

@@ -105,6 +105,13 @@ public class PersonDAO {
 		
 	}
 	
+	/**
+	 * @param updatePerson
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	public Person updatePerson(Person updatePerson) throws StreamWriteException, DatabindException, IOException {
 	
 		List<Person> persons = elements.getPersons();

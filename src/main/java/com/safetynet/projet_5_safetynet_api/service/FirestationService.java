@@ -29,5 +29,17 @@ public class FirestationService {
 		return firestationDAO.saveAFirestation(firestation);
 		
 	}
+	
+	public void deleteAFirestation(String address) throws StreamWriteException, DatabindException, IOException {
+		
+		firestationDAO.deleteAFirestation(address);
+		
+	}
+	
+	public Firestation updateAFirestation(Firestation firestation) throws StreamWriteException, DatabindException, IOException {
+		
+		return firestationDAO.updateAFirestation(firestation);
+		
+	}
 
 }

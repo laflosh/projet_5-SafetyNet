@@ -71,7 +71,7 @@ public class MedicalrecordDAO {
 		
 		medicalrecords.add(medicalrecord);
 		
-		dataManager.writeData(elements);;
+		dataManager.writeData(elements);
 		
 		logger.info("Saving a medicalrecord in the JSON file.");
 		return medicalrecord;

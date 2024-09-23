@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ import com.safetynet.projet_5_safetynet_api.model.Firestation;
 import com.safetynet.projet_5_safetynet_api.service.FirestationService;
 
 @RestController
+@RequestMapping("/firestation")
 public class FirestationController {
 
 	@Autowired
@@ -35,7 +37,7 @@ public class FirestationController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@GetMapping("/firestation")
+	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Firestation> getAllFirestations() throws StreamReadException, DatabindException, IOException{
 		
@@ -51,7 +53,7 @@ public class FirestationController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@PostMapping("/firestation")
+	@PostMapping
 	public ResponseEntity<?> saveAFirestation(@RequestBody Firestation firestation, UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException{
 		
 		if(firestation == null) {
@@ -76,7 +78,7 @@ public class FirestationController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@DeleteMapping("/firestation")
+	@DeleteMapping
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteAFirestation(@RequestParam(required = false, value = "address") String address) throws StreamWriteException, DatabindException, IOException {
 		
@@ -91,7 +93,7 @@ public class FirestationController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@PutMapping("/firestation")
+	@PutMapping
 	public ResponseEntity<?> updateAFirestation(@RequestBody Firestation firestation) throws StreamWriteException, DatabindException, IOException{
 		
 		if(firestation == null) {

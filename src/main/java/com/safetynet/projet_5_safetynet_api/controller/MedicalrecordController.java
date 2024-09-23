@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.service.MedicalrecordService;
 
 @RestController
+@RequestMapping("/medicalrecord")
 public class MedicalrecordController {
 
 	@Autowired
@@ -35,7 +37,7 @@ public class MedicalrecordController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@GetMapping("/medicalrecord")
+	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Medicalrecord> getAllMedicalrecords() throws StreamReadException, DatabindException, IOException{
 		
@@ -51,7 +53,7 @@ public class MedicalrecordController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@PostMapping("/medicalrecord")
+	@PostMapping
 	public ResponseEntity<?> saveAMedicalrecord(@RequestBody Medicalrecord medicalrecord,  UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException{
 		
 		if(medicalrecord == null) {
@@ -77,7 +79,7 @@ public class MedicalrecordController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@DeleteMapping("/medicalrecord")
+	@DeleteMapping
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteAMedicalrecord(@RequestParam(required = false, value = "firstName") String firstName, @RequestParam(required = false, value = "lastName") String lastName) throws StreamWriteException, DatabindException, IOException {
 		
@@ -92,7 +94,7 @@ public class MedicalrecordController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@PutMapping("/medicalrecord")
+	@PutMapping
 	public ResponseEntity<?> updateAMedicalRecord(@RequestBody Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException{
 		
 	if(medicalrecord == null) {

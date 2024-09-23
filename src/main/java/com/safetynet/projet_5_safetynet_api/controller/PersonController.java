@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,8 @@ import com.safetynet.projet_5_safetynet_api.model.Person;
 import com.safetynet.projet_5_safetynet_api.service.PersonService;
 
 @RestController
-public class PersonRestController {
+@RequestMapping("/person")
+public class PersonController {
 
 	@Autowired
 	PersonService personService;
@@ -35,7 +37,7 @@ public class PersonRestController {
 	 * @throws DatabindException 
 	 * @throws StreamReadException 
 	 */
-	@GetMapping("/person")
+	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Person> getPersons() throws StreamReadException, DatabindException, IOException{
 		
@@ -51,7 +53,7 @@ public class PersonRestController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@PostMapping("/person")
+	@PostMapping
 	public ResponseEntity<?> savePerson(@RequestBody Person person, UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException {
 		
 		if(person == null) {
@@ -78,7 +80,7 @@ public class PersonRestController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@DeleteMapping("/person")
+	@DeleteMapping
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deletePerson(@RequestParam(required = false, value = "firstName") String firstName,@RequestParam(required = false, value = "lastName") String lastName ) throws StreamWriteException, DatabindException, IOException{
 		
@@ -93,7 +95,7 @@ public class PersonRestController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@PutMapping("/person")
+	@PutMapping
 	public ResponseEntity<?> updatePerson(@RequestBody Person person) throws StreamWriteException, DatabindException, IOException{
 		
 		if(person == null) {

@@ -19,17 +19,23 @@ public class DataManager {
 	
 	private static Logger logger = LogManager.getLogger("DataManager");
 
-	private File data = new File("C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json");
+	private String dataPath = "C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json";
+	
+	ListOfElements elements = null;
 	
 	@Autowired
 	ObjectMapper objectMapper;
 	
 	public  ListOfElements getAllData() throws StreamReadException, DatabindException, IOException{
 		
-		ListOfElements elements = objectMapper.readValue(data, ListOfElements.class);
+		if(elements == null) {
+			
+			elements = objectMapper.readValue(new File(dataPath), ListOfElements.class);
+			
+		}
 		
 		return elements;
-		
+
 	}
 	
 	public void writeData(ListOfElements elements) throws StreamWriteException, DatabindException, IOException {
@@ -37,7 +43,7 @@ public class DataManager {
 		logger.info("Saving all the data in the JSON file.");
 		objectMapper
 		.writerWithDefaultPrettyPrinter()
-		.writeValue(data, elements);
+		.writeValue(new File(dataPath), elements);
 		
 	}
 	

@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.projet_5_safetynet_api.model.Person;
 
@@ -23,9 +22,10 @@ import com.safetynet.projet_5_safetynet_api.model.Person;
 @AutoConfigureMockMvc
 class PersonControllerTest {
 	
-	ObjectMapper objectMapper = new ObjectMapper();
-	
 	Person person = new Person();
+	
+	@Autowired
+	ObjectMapper objectMapper;
 	
 	@Autowired
 	public MockMvc mockMvc;

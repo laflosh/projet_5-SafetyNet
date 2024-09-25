@@ -82,7 +82,7 @@ public class PersonDAO {
 
 		List<Person> persons = elements.getPersons();
 		
-		//persons.removeIf(person -> person.getFirstName().equals(deletePerson.getFirstName()) && person.getLastName().equals(deletePerson.getLastName()));
+		//persons.removeIf(person -> person.getFirstName().equals(firstName) && person.getLastName().equals(lastName));
 		
 		//persons.stream().forEach(null);
 		

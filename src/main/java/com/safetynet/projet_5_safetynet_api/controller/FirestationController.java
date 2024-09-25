@@ -2,7 +2,6 @@ package com.safetynet.projet_5_safetynet_api.controller;
 
 import java.io.IOException;
 import java.net.URI;
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +23,11 @@ import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
 import com.safetynet.projet_5_safetynet_api.service.FirestationService;
-import com.safetynet.projet_5_safetynet_api.service.UnitaryEndpointsService;
 
 @RestController
 @RequestMapping("/firestation")
 public class FirestationController {
 
-	@Autowired
-	UnitaryEndpointsService unitaryEndpointsService;
-	
 	@Autowired
 	FirestationService firestationService;
 	
@@ -41,21 +36,12 @@ public class FirestationController {
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
-	 * @throws ParseException 
 	 */
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<?> getAllFirestations(@RequestParam(value = "stationNumber") int stationNumber) throws StreamReadException, DatabindException, IOException, ParseException{
+	public List<Firestation> getAllFirestations() throws StreamReadException, DatabindException, IOException{
 		
-		if(stationNumber >= 1) {
-			
-			return unitaryEndpointsService.getPersonsDependingOnTheStationNumber(stationNumber);
-			
-		} else {
-			
-			return firestationService.getAllFirestations();
-			
-		}
+		return firestationService.getAllFirestations();
 		
 	}
 	

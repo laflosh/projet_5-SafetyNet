@@ -107,7 +107,7 @@ public class UnitaryEndpointsDAO {
 							
 							long yearCount = (today.getTime() - birthdate.getTime()) * 315576 * 100000;
 							
-							if(yearCount >= 18) {
+							if(yearCount > 18) {
 								
 								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
 								

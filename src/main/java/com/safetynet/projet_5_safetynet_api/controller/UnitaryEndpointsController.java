@@ -47,11 +47,23 @@ public class UnitaryEndpointsController {
 		
 	}
 	
+	/**
+	 * @param firestation
+	 * @return
+	 */
 	@GetMapping("/phoneAlert")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(@RequestParam(value = "firestation") int firestation){
 		
 		return unitaryEndpointsService.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);
+		
+	}
+	
+	@GetMapping("/communityEmail")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<String> getAllEmailAddressDependingOfTheCity(@RequestParam(value = "city") String city){
+		
+		return unitaryEndpointsService.getAllEmailAddressDependingOfTheCity(city);
 		
 	}
 	

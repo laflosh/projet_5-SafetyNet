@@ -34,4 +34,10 @@ public class UnitaryEndpointsService {
 		
 	}
 
+	public List<String> getAllEmailAddressDependingOfTheCity(String city) {
+
+		return unitaryEndpointsDAO.getAllEmailAddressDependingOfTheCity(city);
+		
+	}
+
 }

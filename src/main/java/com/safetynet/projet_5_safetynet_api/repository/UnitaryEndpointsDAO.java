@@ -204,6 +204,10 @@ public class UnitaryEndpointsDAO {
 		
 	}
 
+	/**
+	 * @param firestationNumber
+	 * @return
+	 */
 	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(int firestationNumber) {
 		
 		List<String> phoneNumberList = new ArrayList<String>();
@@ -236,6 +240,24 @@ public class UnitaryEndpointsDAO {
 		}
 		
 		return phoneNumberList;
+	}
+
+	public List<String> getAllEmailAddressDependingOfTheCity(String city) {
+		
+		List<String> emailList = new ArrayList<String>();
+		
+		for(Person person : persons) {
+			
+			if(person.getCity().equals(city)) {
+				
+				emailList.add(person.getEmail());
+				
+			}
+			
+		}
+		
+		return emailList;
+		
 	}
 
 }

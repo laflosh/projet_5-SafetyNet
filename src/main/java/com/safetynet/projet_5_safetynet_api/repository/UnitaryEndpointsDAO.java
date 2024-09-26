@@ -139,6 +139,11 @@ public class UnitaryEndpointsDAO {
 		
 	}
 
+	/**
+	 * @param address
+	 * @return
+	 * @throws ParseException
+	 */
 	public List<Object> getAllChildrenDependingOnTheAddress(String address) throws ParseException {
 		
 		//List for adding the child depending of the address and housemembers of the child
@@ -197,6 +202,40 @@ public class UnitaryEndpointsDAO {
 		
 		return filterChildrenList;
 		
+	}
+
+	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(int firestationNumber) {
+		
+		List<String> phoneNumberList = new ArrayList<String>();
+		
+		//firestationsRequest will have only the stations and address equal to the stationNumber variable
+		List<Firestation> firestationsRequest = new ArrayList<Firestation>();
+		for(Firestation firestation : firestations) {
+			
+			if(firestation.getStation() == firestationNumber) {
+				
+				firestationsRequest.add(firestation);
+				
+			}
+			
+		}
+		
+		//Add the phone number for the person who has the same address as the firestation
+		for(Person person : persons) {
+			
+			for(Firestation firestationRequest : firestationsRequest) {
+				
+				if(firestationRequest.getAddress().equals(person.getAddress())) {
+					
+					phoneNumberList.add(person.getPhone());
+					
+				}
+				
+			}
+			
+		}
+		
+		return phoneNumberList;
 	}
 
 }

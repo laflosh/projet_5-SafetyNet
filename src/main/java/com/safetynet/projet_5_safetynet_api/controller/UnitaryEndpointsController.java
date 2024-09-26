@@ -34,11 +34,24 @@ public class UnitaryEndpointsController {
 		
 	}
 	
+	/**
+	 * @param address
+	 * @return
+	 * @throws ParseException
+	 */
 	@GetMapping("/childAlert")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Object> getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException{
 		
 		return unitaryEndpointsService.getAllChildrenDependingOnTheAddress(address);
+		
+	}
+	
+	@GetMapping("/phoneAlert")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(@RequestParam(value = "firestation") int firestation){
+		
+		return unitaryEndpointsService.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);
 		
 	}
 	

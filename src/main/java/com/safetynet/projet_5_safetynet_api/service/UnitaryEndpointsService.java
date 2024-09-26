@@ -28,4 +28,10 @@ public class UnitaryEndpointsService {
 		
 	}
 
+	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(int firestation) {
+
+		return unitaryEndpointsDAO.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);
+		
+	}
+
 }

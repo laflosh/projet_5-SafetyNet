@@ -2,6 +2,7 @@ package com.safetynet.projet_5_safetynet_api.controller;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class UnitaryEndpointsController {
 	
 	@GetMapping("/childAlert")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<?> getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address){
+	public List<Object> getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException{
 		
 		return unitaryEndpointsService.getAllChildrenDependingOnTheAddress(address);
 		

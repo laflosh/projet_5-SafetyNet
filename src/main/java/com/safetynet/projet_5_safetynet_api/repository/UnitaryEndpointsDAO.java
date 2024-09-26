@@ -109,11 +109,11 @@ public class UnitaryEndpointsDAO {
 							
 							if(birthdate.isBefore(today)) {
 								
-								countPersonMap.put("child", countPersonMap.get("child") + 1);
+								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
 								
 							} else {
 								
-								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
+								countPersonMap.put("child", countPersonMap.get("child") + 1);
 								
 							}
 							
@@ -139,9 +139,63 @@ public class UnitaryEndpointsDAO {
 		
 	}
 
-	public List<?> getAllChildrenDependingOnTheAddress(String address) {
+	public List<Object> getAllChildrenDependingOnTheAddress(String address) throws ParseException {
 		
-		return null;
+		//List for adding the child depending of the address and housemembers of the child
+		List<Object> filterChildrenList = new ArrayList<Object>();
+		List<Object> houseMembersList = new ArrayList<Object>();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		LocalDate today = LocalDate.now().minusYears(18);
+		
+		for(Person person : persons) {
+			
+			if(person.getAddress().equals(address)) {
+				
+				for(Medicalrecord medicalrecord : medicalrecords) {
+					
+					if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) && medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())) {
+						
+						Date input = sdf.parse(medicalrecord.getBirthdate());
+						LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						
+						if(birthdate.isAfter(today)) {
+							
+							Map<String, String> child = new HashMap<String, String>();
+							
+							child.put("firstName", person.getFirstName());
+							child.put("lastName", person.getLastName());
+							child.put("birthdate", medicalrecord.getBirthdate());
+							
+							List<Map.Entry<String, String>> childList = child.entrySet().stream().collect(Collectors.toList());
+							
+							filterChildrenList.addAll(childList);
+							
+						} else {
+							
+							Map<String, String> houseMember = new HashMap<String, String>();
+							
+							houseMember.put("firstName", person.getFirstName());
+							houseMember.put("lastName", person.getLastName());
+							
+							List<Map.Entry<String, String>> houseMemberList = houseMember.entrySet().stream().collect(Collectors.toList());
+							
+							houseMembersList.addAll(houseMemberList);
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+
+		//Fusion two filter List
+		filterChildrenList.add(houseMembersList);
+		
+		return filterChildrenList;
 		
 	}
 

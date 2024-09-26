@@ -2,6 +2,7 @@ package com.safetynet.projet_5_safetynet_api.service;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UnitaryEndpointsService {
 		
 	}
 
-	public List<?> getAllChildrenDependingOnTheAddress(String address) {
+	public List<Object> getAllChildrenDependingOnTheAddress(String address) throws ParseException {
 
 		return unitaryEndpointsDAO.getAllChildrenDependingOnTheAddress(address);
 		

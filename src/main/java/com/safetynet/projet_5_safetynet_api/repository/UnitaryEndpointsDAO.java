@@ -3,6 +3,8 @@ package com.safetynet.projet_5_safetynet_api.repository;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -66,7 +68,7 @@ public class UnitaryEndpointsDAO {
 	 */
 	public List<Object> getPersonsDependingOnTheStationNumber(int stationNumber) throws ParseException {
 		
-		//Map for counting how many adult and child depending of the station number
+		//Map for counting how many adults and children depending of the station number
 		Map<String, Integer> countPersonMap = new HashMap<String, Integer>();
 		countPersonMap.put("adult", 0);
 		countPersonMap.put("child", 0);
@@ -87,6 +89,9 @@ public class UnitaryEndpointsDAO {
 		//Count adult and child depending on the birthdate in medicalrecords
 		List<Object> filterPersons = new ArrayList<Object>();
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		LocalDate today = LocalDate.now().minusYears(18);
+		
 		for(Person person : persons) {
 			
 			for(Firestation firestationRequest : firestationsRequest) {
@@ -97,23 +102,18 @@ public class UnitaryEndpointsDAO {
 					
 					for(Medicalrecord medicalrecord : medicalrecords) {
 						
-						if(medicalrecord.getFirstName().equals(person.getFirstName()) && medicalrecord.getLastName().equals(person.getLastName())) {
+						if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) && medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())) {
 							
-							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-							Date birthdate = sdf.parse(medicalrecord.getBirthdate());
-							Date today = new Date();
-							String todayAsString = sdf.format(today);
-							today = sdf.parse(todayAsString);
+							Date input = sdf.parse(medicalrecord.getBirthdate());
+							LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 							
-							long yearCount = (today.getTime() - birthdate.getTime()) * 315576 * 100000;
-							
-							if(yearCount > 18) {
+							if(birthdate.isBefore(today)) {
 								
-								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
+								countPersonMap.put("child", countPersonMap.get("child") + 1);
 								
 							} else {
 								
-								countPersonMap.put("child", countPersonMap.get("child") + 1);
+								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
 								
 							}
 							

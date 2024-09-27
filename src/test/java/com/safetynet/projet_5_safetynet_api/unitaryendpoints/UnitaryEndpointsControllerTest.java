@@ -17,21 +17,75 @@ class UnitaryEndpointsControllerTest {
 	MockMvc mockMvc;
 	
 	@Test
-	void testGetAllPersonsDependingOnTheFirstationNumberAndReturnOk() throws Exception {
+	public void testGetAllPersonsDependingOnTheFirstationNumberAndReturnOk() throws Exception {
 
-		mockMvc.perform(get("/firestation?stationNumber=1"))
+		mockMvc.perform(get("/firestation/{stationNumber}", 1))
 			.andExpect(status().isOk())
 			.andReturn();
 		
 	}
 	
 	@Test
-	void testGetAllChildrenDependingOnTheAddressAndReturnOk() throws Exception {
+	public void testGetAllChildrenDependingOnTheAddressAndReturnOk() throws Exception {
 		
 		String address = "1509 Culver St";
 		
 		mockMvc.perform(get("/childAlert")
 				.param("address", address))
+			.andExpect(status().isOk())
+			.andReturn();
+		
+	}
+	
+	@Test
+	public void testGetAllPhoneNumbersDependingOfTheStationNumberAndReturnOk() throws Exception {
+		
+		mockMvc.perform(get("/phoneAlert?firestation=1"))
+			.andExpect(status().isOk())
+			.andReturn();
+		
+	}
+	
+	@Test
+	public void testGetAllPersonsLivingAndTheStationNumberDependingOfTheAddressAndReturnOk() throws Exception {
+		
+		String address = "1509 Culver St";
+		
+		mockMvc.perform(get("/fire")
+				.param("address", address))
+			.andExpect(status().isOk())
+			.andReturn();
+		
+	}
+	
+	//@Test
+	public void testGetAllPersonsByTheFirestationNUmberAndReturnOk() throws Exception {
+		
+		mockMvc.perform(get("/flood/stations?stations=[1, 2]"))
+			.andExpect(status().isOk())
+			.andReturn();
+		
+	}
+	
+	//@Test
+	public void testGetPersonInformationsDependingOfTheLastNameAndReturnOk() throws Exception {
+		
+		String lastName = "Boyd";
+		
+		mockMvc.perform(get("/")
+				.param("lastName", lastName))
+			.andExpect(status().isOk())
+			.andReturn();
+		
+	}
+	
+	@Test
+	public void testGetAllEmailAddressDependingOfTheCityAndReturnOk() throws Exception {
+		
+		String city = "Culver";
+		
+		mockMvc.perform(get("/communityEmail")
+				.param("city", city))
 			.andExpect(status().isOk())
 			.andReturn();
 		

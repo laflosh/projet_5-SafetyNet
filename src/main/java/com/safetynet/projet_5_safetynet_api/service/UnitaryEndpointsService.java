@@ -33,6 +33,18 @@ public class UnitaryEndpointsService {
 		return unitaryEndpointsDAO.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);
 		
 	}
+	
+	public List<Object> getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
+
+		return unitaryEndpointsDAO.getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(address);
+		
+	}
+	
+	public List<Object> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
+
+		return unitaryEndpointsDAO.getAllPersonsByFirestationNumber(stationNumbers);
+		
+	}
 
 	public List<String> getAllEmailAddressDependingOfTheCity(String city) {
 

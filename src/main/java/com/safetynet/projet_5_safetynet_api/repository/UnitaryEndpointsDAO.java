@@ -90,7 +90,7 @@ public class UnitaryEndpointsDAO {
 		List<Object> filterPersons = new ArrayList<Object>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		LocalDate today = LocalDate.now().minusYears(18);
+		LocalDate checkMajority = LocalDate.now().minusYears(18);
 		
 		for(Person person : persons) {
 			
@@ -107,7 +107,7 @@ public class UnitaryEndpointsDAO {
 							Date input = sdf.parse(medicalrecord.getBirthdate());
 							LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 							
-							if(birthdate.isBefore(today)) {
+							if(birthdate.isBefore(checkMajority)) {
 								
 								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
 								
@@ -129,10 +129,8 @@ public class UnitaryEndpointsDAO {
 		
 		
 		
-		//Convert the Map counter to a List to add it in the filterPersons List
-		List<Map.Entry<String, Integer>> countPersonList = countPersonMap.entrySet().stream().collect(Collectors.toList());
-		
-		filterPersons.addAll(countPersonList);
+		//Add the Map counter to the filterList
+		filterPersons.add(countPersonMap);
 		
 		logger.info("Return all the Persons with the same address of the stationNumber saved in the JSON file.");
 		return filterPersons;
@@ -151,8 +149,10 @@ public class UnitaryEndpointsDAO {
 		List<Object> houseMembersList = new ArrayList<Object>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		LocalDate today = LocalDate.now().minusYears(18);
+		LocalDate checkMajority = LocalDate.now().minusYears(18);
 		
+		//Add the child who living in the address
+		//Else add house members in a another List who living in the address
 		for(Person person : persons) {
 			
 			if(person.getAddress().equals(address)) {
@@ -164,28 +164,24 @@ public class UnitaryEndpointsDAO {
 						Date input = sdf.parse(medicalrecord.getBirthdate());
 						LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						
-						if(birthdate.isAfter(today)) {
-							
-							Map<String, String> child = new HashMap<String, String>();
+						Map<String, String> child = new HashMap<String, String>();
+						
+						Map<String, String> houseMember = new HashMap<String, String>();
+						
+						if(birthdate.isAfter(checkMajority)) {
 							
 							child.put("firstName", person.getFirstName());
 							child.put("lastName", person.getLastName());
 							child.put("birthdate", medicalrecord.getBirthdate());
 							
-							List<Map.Entry<String, String>> childList = child.entrySet().stream().collect(Collectors.toList());
-							
-							filterChildrenList.addAll(childList);
+							filterChildrenList.add(child);
 							
 						} else {
-							
-							Map<String, String> houseMember = new HashMap<String, String>();
 							
 							houseMember.put("firstName", person.getFirstName());
 							houseMember.put("lastName", person.getLastName());
 							
-							List<Map.Entry<String, String>> houseMemberList = houseMember.entrySet().stream().collect(Collectors.toList());
-							
-							houseMembersList.addAll(houseMemberList);
+							houseMembersList.add(houseMember);
 							
 						}
 						
@@ -197,9 +193,10 @@ public class UnitaryEndpointsDAO {
 			
 		}
 
-		//Fusion two filter List
+		//Add the houseMembersList filter List in the filterChildrenList
 		filterChildrenList.add(houseMembersList);
 		
+		logger.info("Return all children depending of the address and their house members saved in the JSON file.");
 		return filterChildrenList;
 		
 	}
@@ -239,13 +236,78 @@ public class UnitaryEndpointsDAO {
 			
 		}
 		
+		logger.info("Return the phone numbers de^pending oh the firestation number given saved in the JSON file.");
 		return phoneNumberList;
 	}
+	
+	public List<Object> getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
 
+		Firestation firestationRequest = new Firestation();
+		
+		List<Object> livingPersons = new ArrayList<Object>();
+		
+		for(Firestation firestation : firestations) {
+			
+			if(firestation.getAddress().equals(address)) {
+				
+				firestationRequest.setAddress(firestation.getAddress());
+				firestationRequest.setStation(firestation.getStation());
+				
+			}
+			
+		}
+		
+		for(Person person : persons) {
+			
+			if(person.getAddress().equals(firestationRequest.getAddress())) {
+				
+				for(Medicalrecord medicalrecord : medicalrecords) {
+					
+					if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) && medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())){
+						
+						Map<String, Object> houseMember = new HashMap<String, Object>();
+						
+						houseMember.put("firstName", person.getFirstName());
+						houseMember.put("lastName", person.getLastName());
+						houseMember.put("birthdate", medicalrecord.getBirthdate());
+						houseMember.put("phone", person.getPhone());
+						houseMember.put("medicaltions", medicalrecord.getMedications());
+						houseMember.put("allergies", medicalrecord.getAllergies());
+						
+						livingPersons.add(houseMember);
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		//Add the firestation with the same address as house members
+		livingPersons.add(firestationRequest);
+		
+		logger.info("Return all the Persons living in the same address and the firestation saved in the JSON file.");
+		return livingPersons;
+		
+	}
+	
+	public List<Object> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
+		// TODO 
+		return null;
+		
+	}
+
+	/**
+	 * @param city
+	 * @return
+	 */
 	public List<String> getAllEmailAddressDependingOfTheCity(String city) {
 		
+		//List of email address for the persons living in the variable city
 		List<String> emailList = new ArrayList<String>();
 		
+		//Add the email address in the List
 		for(Person person : persons) {
 			
 			if(person.getCity().equals(city)) {
@@ -256,6 +318,7 @@ public class UnitaryEndpointsDAO {
 			
 		}
 		
+		logger.info("Return all email address of persons in a city given saved in the JSON file.");
 		return emailList;
 		
 	}

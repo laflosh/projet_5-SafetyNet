@@ -59,6 +59,30 @@ public class UnitaryEndpointsController {
 		
 	}
 	
+	/**
+	 * @param address
+	 * @return
+	 */
+	@GetMapping("/fire")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<Object> getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(@RequestParam(value = "address") String address){
+		
+		return unitaryEndpointsService.getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(address);
+		
+	}
+	
+	@GetMapping("/flood/stations")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<Object> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers){
+		
+		return unitaryEndpointsService.getAllPersonsByFirestationNumber(stationNumbers);
+		
+	}
+	
+	/**
+	 * @param city
+	 * @return
+	 */
 	@GetMapping("/communityEmail")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<String> getAllEmailAddressDependingOfTheCity(@RequestParam(value = "city") String city){

@@ -295,11 +295,69 @@ public class UnitaryEndpointsDAO {
 	}
 	
 	public List<Object> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
-		// TODO 
-		return null;
+		
+		List<Firestation> requestFirestations = new ArrayList<Firestation>();
+		List<Object> personsInfoDependingFirestation = new ArrayList<Object>();
+		
+		for(int stationNumber : stationNumbers) {
+			
+			for(Firestation firestation : firestations) {
+				
+				if(firestation.getStation() == stationNumber) {
+					
+					requestFirestations.add(firestation);
+					
+				}
+				
+			}
+			
+		}
+		
+		for(Firestation requestFirestation : requestFirestations) {
+			
+			List<Object> personsInfo = new ArrayList<Object>();
+			personsInfoDependingFirestation.add(requestFirestation);
+			
+			for(Person person : persons) {
+				
+				if(requestFirestation.getAddress().equals(person.getAddress())) {
+					
+					for(Medicalrecord medicalrecord : medicalrecords) {
+						
+						if(medicalrecord.getLastName().equals(person.getLastName()) && medicalrecord.getFirstName().equals(person.getFirstName())) {
+							
+							Map<String, Object> infoMap = new HashMap<String, Object>();
+						
+							infoMap.put("firstName", person.getFirstName());
+							infoMap.put("lastName", person.getLastName());
+							infoMap.put("birthdate", medicalrecord.getBirthdate());
+							infoMap.put("phone", person.getPhone());
+							infoMap.put("address", person.getAddress());
+							infoMap.put("medications", medicalrecord.getMedications());
+							infoMap.put("allergies", medicalrecord.getAllergies());
+							
+							personsInfo.add(infoMap);
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+			personsInfoDependingFirestation.add(personsInfo);
+			
+		}
+		
+		return personsInfoDependingFirestation;
 		
 	}
 	
+	/**
+	 * @param lastName
+	 * @return
+	 */
 	public List<Object> getAllInformationsOnAPersonDependingLastName(String lastName) {
 
 		List<Object> personsInfo = new ArrayList<Object>();
@@ -331,6 +389,7 @@ public class UnitaryEndpointsDAO {
 			
 		}
 		
+		logger.info("Return all the Persons informations saved in the JSON file.");
 		return personsInfo;
 		
 	}

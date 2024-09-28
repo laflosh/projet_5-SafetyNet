@@ -79,6 +79,10 @@ public class UnitaryEndpointsController {
 		
 	}
 	
+	/**
+	 * @param lastName
+	 * @return
+	 */
 	@GetMapping("/{lastName}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Object> getAllInformationsOnAPersonDependingLastName(@PathVariable("lastName") String  lastName){

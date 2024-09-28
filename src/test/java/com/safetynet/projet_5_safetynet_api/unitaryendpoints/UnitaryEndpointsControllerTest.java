@@ -58,10 +58,10 @@ class UnitaryEndpointsControllerTest {
 		
 	}
 	
-	//@Test
-	public void testGetAllPersonsByTheFirestationNUmberAndReturnOk() throws Exception {
+	@Test
+	public void testGetAllPersonsByTheFirestationNumberAndReturnOk() throws Exception {
 		
-		mockMvc.perform(get("/flood/stations?stations=[1, 2]"))
+		mockMvc.perform(get("/flood/stations?stations=1, 2"))
 			.andExpect(status().isOk())
 			.andReturn();
 		

@@ -45,6 +45,12 @@ public class UnitaryEndpointsService {
 		return unitaryEndpointsDAO.getAllPersonsByFirestationNumber(stationNumbers);
 		
 	}
+	
+	public List<Object> getAllInformationsOnAPersonDependingLastName(String lastName) {
+
+		return unitaryEndpointsDAO.getAllInformationsOnAPersonDependingLastName(lastName);
+		
+	}
 
 	public List<String> getAllEmailAddressDependingOfTheCity(String city) {
 

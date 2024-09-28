@@ -164,24 +164,22 @@ public class UnitaryEndpointsDAO {
 						Date input = sdf.parse(medicalrecord.getBirthdate());
 						LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						
-						Map<String, String> child = new HashMap<String, String>();
-						
-						Map<String, String> houseMember = new HashMap<String, String>();
+						Map<String, String> personInfo = new HashMap<String, String>();
 						
 						if(birthdate.isAfter(checkMajority)) {
 							
-							child.put("firstName", person.getFirstName());
-							child.put("lastName", person.getLastName());
-							child.put("birthdate", medicalrecord.getBirthdate());
+							personInfo.put("firstName", person.getFirstName());
+							personInfo.put("lastName", person.getLastName());
+							personInfo.put("birthdate", medicalrecord.getBirthdate());
 							
-							filterChildrenList.add(child);
+							filterChildrenList.add(personInfo);
 							
 						} else {
 							
-							houseMember.put("firstName", person.getFirstName());
-							houseMember.put("lastName", person.getLastName());
+							personInfo.put("firstName", person.getFirstName());
+							personInfo.put("lastName", person.getLastName());
 							
-							houseMembersList.add(houseMember);
+							houseMembersList.add(personInfo);
 							
 						}
 						
@@ -240,6 +238,10 @@ public class UnitaryEndpointsDAO {
 		return phoneNumberList;
 	}
 	
+	/**
+	 * @param address
+	 * @return
+	 */
 	public List<Object> getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
 
 		Firestation firestationRequest = new Firestation();
@@ -271,7 +273,7 @@ public class UnitaryEndpointsDAO {
 						houseMember.put("lastName", person.getLastName());
 						houseMember.put("birthdate", medicalrecord.getBirthdate());
 						houseMember.put("phone", person.getPhone());
-						houseMember.put("medicaltions", medicalrecord.getMedications());
+						houseMember.put("medications", medicalrecord.getMedications());
 						houseMember.put("allergies", medicalrecord.getAllergies());
 						
 						livingPersons.add(houseMember);
@@ -297,6 +299,42 @@ public class UnitaryEndpointsDAO {
 		return null;
 		
 	}
+	
+	public List<Object> getAllInformationsOnAPersonDependingLastName(String lastName) {
+
+		List<Object> personsInfo = new ArrayList<Object>();
+		
+		for(Person person : persons) {
+			
+			if(person.getLastName().equals(lastName)) {
+				
+				for(Medicalrecord medicalrecord : medicalrecords) {
+					
+					if(medicalrecord.getLastName().equals(person.getLastName()) && medicalrecord.getFirstName().equals(person.getFirstName())) {
+						
+						Map<String, Object> infoMap = new HashMap<String, Object>();
+						
+						infoMap.put("firstName", person.getFirstName());
+						infoMap.put("lastName", person.getLastName());
+						infoMap.put("birthdate", medicalrecord.getBirthdate());
+						infoMap.put("email", person.getEmail());
+						infoMap.put("medications", medicalrecord.getMedications());
+						infoMap.put("allergies", medicalrecord.getAllergies());
+						
+						personsInfo.add(infoMap);
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		return personsInfo;
+		
+	}
+
 
 	/**
 	 * @param city

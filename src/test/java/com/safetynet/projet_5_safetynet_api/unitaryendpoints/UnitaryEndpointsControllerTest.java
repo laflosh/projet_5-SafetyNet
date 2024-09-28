@@ -67,13 +67,12 @@ class UnitaryEndpointsControllerTest {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testGetPersonInformationsDependingOfTheLastNameAndReturnOk() throws Exception {
 		
 		String lastName = "Boyd";
 		
-		mockMvc.perform(get("/")
-				.param("lastName", lastName))
+		mockMvc.perform(get("/{lastName}", lastName))
 			.andExpect(status().isOk())
 			.andReturn();
 		

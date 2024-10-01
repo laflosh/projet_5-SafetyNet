@@ -7,9 +7,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +20,14 @@ import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
 import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.model.Person;
+import com.safetynet.projet_5_safetynet_api.specificModels.Child;
+import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
+import com.safetynet.projet_5_safetynet_api.specificModels.Parent;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonSpecificInfo;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordPhone;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
 import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
@@ -62,15 +68,12 @@ public class UnitaryEndpointsDAO {
 
 	/**
 	 * @param stationNumber
-	 * @return
+	 * @return PersonWithCount
 	 * @throws ParseException 
 	 */
-	public List<Object> getPersonsDependingOnTheStationNumber(int stationNumber) throws ParseException {
+	public PersonsWithCount getPersonsDependingOnTheStationNumber(int stationNumber) throws ParseException {
 		
-		//Map for counting how many adults and children depending of the station number
-		Map<String, Integer> countPersonMap = new HashMap<String, Integer>();
-		countPersonMap.put("adult", 0);
-		countPersonMap.put("child", 0);
+		PersonsWithCount personWithCount = new PersonsWithCount();
 		
 		//firestationsRequest will have only the stations and address equal to the stationNumber variable
 		List<Firestation> firestationsRequest = new ArrayList<Firestation>();
@@ -86,7 +89,7 @@ public class UnitaryEndpointsDAO {
 		
 		//Keep only the persons who have the same address as the stationNumber 
 		//Count adult and child depending on the birthdate in medicalrecords
-		List<Object> filterPersons = new ArrayList<Object>();
+		List<PersonSpecificInfo> filterPersons = new ArrayList<PersonSpecificInfo>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		LocalDate checkMajority = LocalDate.now().minusYears(18);
@@ -97,7 +100,14 @@ public class UnitaryEndpointsDAO {
 				
 				if(firestationRequest.getAddress().equals(person.getAddress())) {
 					
-					filterPersons.add(person);
+					PersonSpecificInfo personSpecifiInfo = new PersonSpecificInfo();
+					
+					personSpecifiInfo.setFirstName(person.getFirstName());
+					personSpecifiInfo.setLastName(person.getLastName());
+					personSpecifiInfo.setAddress(person.getAddress());
+					personSpecifiInfo.setPhone(person.getPhone());
+					
+					filterPersons.add(personSpecifiInfo);
 					
 					for(Medicalrecord medicalrecord : medicalrecords) {
 						
@@ -108,11 +118,27 @@ public class UnitaryEndpointsDAO {
 							
 							if(birthdate.isBefore(checkMajority)) {
 								
-								countPersonMap.put("adult", countPersonMap.get("adult") + 1);
-								
+								if(personWithCount.getAdultCount() <= 0) {
+									
+									personWithCount.setAdultCount(1);
+									
+								} else {
+									
+									personWithCount.setAdultCount(personWithCount.getAdultCount() + 1);
+									
+								}
+													
 							} else {
 								
-								countPersonMap.put("child", countPersonMap.get("child") + 1);
+								if(personWithCount.getChildCount() <= 0) {
+									
+									personWithCount.setChildCount(1);
+									
+								} else {
+									
+									personWithCount.setChildCount(personWithCount.getChildCount() + 1);
+									
+								}
 								
 							}
 							
@@ -124,15 +150,12 @@ public class UnitaryEndpointsDAO {
 				
 			}
 			
+			personWithCount.setPersons(filterPersons);
+			
 		}
 		
-		
-		
-		//Add the Map counter to the filterList
-		filterPersons.add(countPersonMap);
-		
 		logger.info("Return all the Persons with the same address of the stationNumber saved in the JSON file.");
-		return filterPersons;
+		return personWithCount;
 		
 	}
 
@@ -141,11 +164,13 @@ public class UnitaryEndpointsDAO {
 	 * @return
 	 * @throws ParseException
 	 */
-	public List<Object> getAllChildrenDependingOnTheAddress(String address) throws ParseException {
+	public HouseMember getAllChildrenDependingOnTheAddress(String address) throws ParseException {
 		
-		//List for adding the child depending of the address and housemembers of the child
-		List<Object> filterChildrenList = new ArrayList<Object>();
-		List<Object> houseMembersList = new ArrayList<Object>();
+		HouseMember houseMember = new HouseMember();
+		
+		//List for adding the child depending of the address and parent of the child
+		List<Child> childList = new ArrayList<Child>();
+		List<Parent> parentList = new ArrayList<Parent>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		LocalDate checkMajority = LocalDate.now().minusYears(18);
@@ -163,22 +188,24 @@ public class UnitaryEndpointsDAO {
 						Date input = sdf.parse(medicalrecord.getBirthdate());
 						LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						
-						Map<String, String> personInfo = new HashMap<String, String>();
-						
 						if(birthdate.isAfter(checkMajority)) {
 							
-							personInfo.put("firstName", person.getFirstName());
-							personInfo.put("lastName", person.getLastName());
-							personInfo.put("birthdate", medicalrecord.getBirthdate());
+							Child child = new Child();
 							
-							filterChildrenList.add(personInfo);
+							child.setFirstName(person.getFirstName());
+							child.setLastName(person.getLastName());
+							child.setBirthdate(medicalrecord.getBirthdate());
+							
+							childList.add(child);
 							
 						} else {
 							
-							personInfo.put("firstName", person.getFirstName());
-							personInfo.put("lastName", person.getLastName());
+							Parent parent = new Parent();
 							
-							houseMembersList.add(personInfo);
+							parent.setFirstName(person.getFirstName());
+							parent.setLastName(person.getLastName());
+							
+							parentList.add(parent);
 							
 						}
 						
@@ -188,13 +215,13 @@ public class UnitaryEndpointsDAO {
 				
 			}
 			
+			houseMember.setChild(childList);
+			houseMember.setParent(parentList);
+			
 		}
-
-		//Add the houseMembersList filter List in the filterChildrenList
-		filterChildrenList.add(houseMembersList);
 		
 		logger.info("Return all children depending of the address and their house members saved in the JSON file.");
-		return filterChildrenList;
+		return houseMember;
 		
 	}
 
@@ -241,11 +268,9 @@ public class UnitaryEndpointsDAO {
 	 * @param address
 	 * @return
 	 */
-	public List<Object> getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
+	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
 
 		Firestation firestationRequest = new Firestation();
-		
-		List<Object> livingPersons = new ArrayList<Object>();
 		
 		for(Firestation firestation : firestations) {
 			
@@ -258,6 +283,11 @@ public class UnitaryEndpointsDAO {
 			
 		}
 		
+		FirestationWithPersons firestationWithpersons = new FirestationWithPersons (); 
+		List<PersonWithMedicalrecordPhone> livingPersons = new ArrayList<PersonWithMedicalrecordPhone>();
+		
+		firestationWithpersons.setFirestation(firestationRequest);
+		
 		for(Person person : persons) {
 			
 			if(person.getAddress().equals(firestationRequest.getAddress())) {
@@ -266,16 +296,16 @@ public class UnitaryEndpointsDAO {
 					
 					if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) && medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())){
 						
-						Map<String, Object> houseMember = new HashMap<String, Object>();
+						PersonWithMedicalrecordPhone personWithMedicalrecord = new PersonWithMedicalrecordPhone();
 						
-						houseMember.put("firstName", person.getFirstName());
-						houseMember.put("lastName", person.getLastName());
-						houseMember.put("birthdate", medicalrecord.getBirthdate());
-						houseMember.put("phone", person.getPhone());
-						houseMember.put("medications", medicalrecord.getMedications());
-						houseMember.put("allergies", medicalrecord.getAllergies());
+						personWithMedicalrecord.setFirstName(person.getFirstName());
+						personWithMedicalrecord.setLastName(person.getLastName());
+						personWithMedicalrecord.setBirthdate(medicalrecord.getBirthdate());
+						personWithMedicalrecord.setPhone(person.getPhone());
+						personWithMedicalrecord.setMedications(medicalrecord.getMedications());
+						personWithMedicalrecord.setAllergies(medicalrecord.getAllergies());
 						
-						livingPersons.add(houseMember);
+						livingPersons.add(personWithMedicalrecord);
 						
 					}
 					
@@ -283,13 +313,12 @@ public class UnitaryEndpointsDAO {
 				
 			}
 			
+			firestationWithpersons.setPersons(livingPersons);
+			
 		}
 		
-		//Add the firestation with the same address as house members
-		livingPersons.add(firestationRequest);
-		
 		logger.info("Return all the Persons living in the same address and the firestation saved in the JSON file.");
-		return livingPersons;
+		return firestationWithpersons;
 		
 	}
 	
@@ -297,10 +326,9 @@ public class UnitaryEndpointsDAO {
 	 * @param stationNumbers
 	 * @return
 	 */
-	public List<Object> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
+	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
 		
 		List<Firestation> requestFirestations = new ArrayList<Firestation>();
-		List<Object> personsInfoDependingFirestation = new ArrayList<Object>();
 		
 		for(int stationNumber : stationNumbers) {
 			
@@ -316,10 +344,14 @@ public class UnitaryEndpointsDAO {
 			
 		}
 		
+		List<FirestationWithPersons> personsInfoDependingFirestation = new ArrayList<FirestationWithPersons>();
+		
 		for(Firestation requestFirestation : requestFirestations) {
 			
-			List<Object> personsInfo = new ArrayList<Object>();
-			personsInfoDependingFirestation.add(requestFirestation);
+			FirestationWithPersons firestationWithPersons = new FirestationWithPersons();
+			List<PersonWithMedicalrecordPhone> personsInfo = new ArrayList<PersonWithMedicalrecordPhone>();
+			
+			firestationWithPersons.setFirestation(requestFirestation);
 			
 			for(Person person : persons) {
 				
@@ -329,17 +361,16 @@ public class UnitaryEndpointsDAO {
 						
 						if(medicalrecord.getLastName().equals(person.getLastName()) && medicalrecord.getFirstName().equals(person.getFirstName())) {
 							
-							Map<String, Object> infoMap = new HashMap<String, Object>();
+							PersonWithMedicalrecordPhone personWithMedicalrecord = new PersonWithMedicalrecordPhone();
 						
-							infoMap.put("firstName", person.getFirstName());
-							infoMap.put("lastName", person.getLastName());
-							infoMap.put("birthdate", medicalrecord.getBirthdate());
-							infoMap.put("phone", person.getPhone());
-							infoMap.put("address", person.getAddress());
-							infoMap.put("medications", medicalrecord.getMedications());
-							infoMap.put("allergies", medicalrecord.getAllergies());
+							personWithMedicalrecord.setFirstName(person.getFirstName());
+							personWithMedicalrecord.setLastName( person.getLastName());
+							personWithMedicalrecord.setBirthdate(medicalrecord.getBirthdate());
+							personWithMedicalrecord.setPhone(person.getPhone());
+							personWithMedicalrecord.setMedications(medicalrecord.getMedications());
+							personWithMedicalrecord.setAllergies(medicalrecord.getAllergies());
 							
-							personsInfo.add(infoMap);
+							personsInfo.add(personWithMedicalrecord);
 							
 						}
 						
@@ -347,9 +378,11 @@ public class UnitaryEndpointsDAO {
 					
 				}
 				
+				firestationWithPersons.setPersons(personsInfo);
+				
 			}
 			
-			personsInfoDependingFirestation.add(personsInfo);
+			personsInfoDependingFirestation.add(firestationWithPersons);
 			
 		}
 		
@@ -361,9 +394,9 @@ public class UnitaryEndpointsDAO {
 	 * @param lastName
 	 * @return
 	 */
-	public List<Object> getAllInformationsOnAPersonDependingLastName(String lastName) {
+	public List<PersonWithMedicalrecordEmail> getAllInformationsOnAPersonDependingLastName(String lastName) {
 
-		List<Object> personsInfo = new ArrayList<Object>();
+		List<PersonWithMedicalrecordEmail> personsInfo = new ArrayList<PersonWithMedicalrecordEmail>();
 		
 		for(Person person : persons) {
 			
@@ -373,16 +406,16 @@ public class UnitaryEndpointsDAO {
 					
 					if(medicalrecord.getLastName().equals(person.getLastName()) && medicalrecord.getFirstName().equals(person.getFirstName())) {
 						
-						Map<String, Object> infoMap = new HashMap<String, Object>();
+						PersonWithMedicalrecordEmail personWithMedicalrecordEmail = new PersonWithMedicalrecordEmail();
 						
-						infoMap.put("firstName", person.getFirstName());
-						infoMap.put("lastName", person.getLastName());
-						infoMap.put("birthdate", medicalrecord.getBirthdate());
-						infoMap.put("email", person.getEmail());
-						infoMap.put("medications", medicalrecord.getMedications());
-						infoMap.put("allergies", medicalrecord.getAllergies());
+						personWithMedicalrecordEmail.setFirstName(person.getFirstName());
+						personWithMedicalrecordEmail.setLastName(person.getLastName());
+						personWithMedicalrecordEmail.setBirthdate(medicalrecord.getBirthdate());
+						personWithMedicalrecordEmail.setEmail(person.getEmail());
+						personWithMedicalrecordEmail.setMedications(medicalrecord.getMedications());
+						personWithMedicalrecordEmail.setAllergies(medicalrecord.getAllergies());
 						
-						personsInfo.add(infoMap);
+						personsInfo.add(personWithMedicalrecordEmail);
 						
 					}
 					

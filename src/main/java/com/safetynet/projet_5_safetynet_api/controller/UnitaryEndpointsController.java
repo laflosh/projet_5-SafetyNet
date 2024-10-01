@@ -2,7 +2,6 @@ package com.safetynet.projet_5_safetynet_api.controller;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetynet.projet_5_safetynet_api.model.Person;
 import com.safetynet.projet_5_safetynet_api.service.UnitaryEndpointsService;
+import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
 
 @RestController
 public class UnitaryEndpointsController {
@@ -28,7 +30,7 @@ public class UnitaryEndpointsController {
 	 */
 	@GetMapping("/firestation")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Object> getPersonsDependingOnTheStationNumber(@RequestParam(value = "stationNumber") int stationNumber) throws ParseException{
+	public PersonsWithCount getPersonsDependingOnTheStationNumber(@RequestParam(value = "stationNumber") int stationNumber) throws ParseException{
 		
 		return unitaryEndpointsService.getPersonsDependingOnTheStationNumber(stationNumber);
 		
@@ -41,7 +43,7 @@ public class UnitaryEndpointsController {
 	 */
 	@GetMapping("/childAlert")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Object> getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException{
+	public HouseMember getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException{
 		
 		return unitaryEndpointsService.getAllChildrenDependingOnTheAddress(address);
 		
@@ -65,7 +67,7 @@ public class UnitaryEndpointsController {
 	 */
 	@GetMapping("/fire")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Object> getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(@RequestParam(value = "address") String address){
+	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(@RequestParam(value = "address") String address){
 		
 		return unitaryEndpointsService.getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(address);
 		
@@ -73,7 +75,7 @@ public class UnitaryEndpointsController {
 	
 	@GetMapping("/flood/stations")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Object> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers){
+	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers){
 		
 		return unitaryEndpointsService.getAllPersonsByFirestationNumber(stationNumbers);
 		
@@ -85,7 +87,7 @@ public class UnitaryEndpointsController {
 	 */
 	@GetMapping("/{lastName}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Object> getAllInformationsOnAPersonDependingLastName(@PathVariable("lastName") String  lastName){
+	public List<PersonWithMedicalrecordEmail> getAllInformationsOnAPersonDependingLastName(@PathVariable("lastName") String  lastName){
 		
 		return unitaryEndpointsService.getAllInformationsOnAPersonDependingLastName(lastName);
 		

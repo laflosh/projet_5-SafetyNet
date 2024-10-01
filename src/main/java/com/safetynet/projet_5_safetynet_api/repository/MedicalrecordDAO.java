@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.util.DataManager;
 

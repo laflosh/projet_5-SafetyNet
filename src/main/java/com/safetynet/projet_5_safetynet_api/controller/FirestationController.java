@@ -37,7 +37,7 @@ public class FirestationController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@GetMapping
+	@GetMapping("/all")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Firestation> getAllFirestations() throws StreamReadException, DatabindException, IOException{
 		
@@ -79,7 +79,7 @@ public class FirestationController {
 	 * @throws IOException
 	 */
 	@DeleteMapping
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteAFirestation(@RequestParam(required = false, value = "address") String address) throws StreamWriteException, DatabindException, IOException {
 		
 		firestationService.deleteAFirestation(address);

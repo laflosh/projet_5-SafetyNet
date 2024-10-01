@@ -1,14 +1,18 @@
 package com.safetynet.projet_5_safetynet_api.firestations;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.hamcrest.Matchers;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
@@ -36,9 +42,11 @@ class FirestationControllerTest {
 	public void testGetAllFirestationsAndReturnOk() throws Exception {
 
 		mockMvc.perform(get("/firestation"))
+			.andDo(print())
 			.andExpect(status().isOk())
-			.andReturn();
-		
+			.andExpect(jsonPath("$", Matchers.not(Matchers.empty())))
+			.andExpect(jsonPath("$",Matchers.hasSize(13)));
+
 	}
 	
 	@Test
@@ -47,12 +55,10 @@ class FirestationControllerTest {
 		firestation.setAddress("test");
 		firestation.setStation(0);
 		
-		String requestJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(firestation);
+		String requestJson = objectMapper.writeValueAsString(firestation);
 		
 		mockMvc.perform(post("/firestation").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-			.andExpect(status().isCreated())
-			.andReturn();
-		
+			.andExpect(status().isCreated());
 		
 	}
 	
@@ -63,12 +69,10 @@ class FirestationControllerTest {
 		
 		firestation.setStation(1);
 		
-		String requestJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(firestation);
+		String requestJson = objectMapper.writeValueAsString(firestation);
 		
 		mockMvc.perform(put("/firestation").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-			.andExpect(status().isOk())
-			.andReturn();
-		
+			.andExpect(status().isOk());
 		
 	}
 	
@@ -81,8 +85,7 @@ class FirestationControllerTest {
 		
 		mockMvc.perform(delete("/firestation")
 				.param("address", address))
-			.andExpect(status().isNoContent())
-			.andReturn();
+			.andExpect(status().isOk());
 		
 	}
 

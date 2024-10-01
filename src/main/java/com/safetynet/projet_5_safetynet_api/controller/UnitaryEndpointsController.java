@@ -26,9 +26,9 @@ public class UnitaryEndpointsController {
 	 * @return
 	 * @throws ParseException 
 	 */
-	@GetMapping("/firestation/{stationNumber}")
+	@GetMapping("/firestation")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Object> getPersonsDependingOnTheStationNumber(@PathVariable("stationNumber") int stationNumber) throws ParseException{
+	public List<Object> getPersonsDependingOnTheStationNumber(@RequestParam(value = "stationNumber") int stationNumber) throws ParseException{
 		
 		return unitaryEndpointsService.getPersonsDependingOnTheStationNumber(stationNumber);
 		

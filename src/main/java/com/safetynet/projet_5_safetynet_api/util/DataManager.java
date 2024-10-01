@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 
 @Component
 public class DataManager {

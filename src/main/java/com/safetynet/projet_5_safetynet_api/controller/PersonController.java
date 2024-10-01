@@ -37,7 +37,7 @@ public class PersonController {
 	 * @throws DatabindException 
 	 * @throws StreamReadException 
 	 */
-	@GetMapping
+	@GetMapping("/all")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Person> getPersons() throws StreamReadException, DatabindException, IOException{
 		
@@ -81,7 +81,7 @@ public class PersonController {
 	 * @throws IOException
 	 */
 	@DeleteMapping
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@ResponseStatus(code = HttpStatus.OK)
 	public void deletePerson(@RequestParam(required = false, value = "firstName") String firstName,@RequestParam(required = false, value = "lastName") String lastName ) throws StreamWriteException, DatabindException, IOException{
 		
 		personService.deletePerson(firstName,lastName);

@@ -1,4 +1,4 @@
-package com.safetynet.projet_5_safetynet_api.dtos;
+package com.safetynet.projet_5_safetynet_api.dto;
 
 import java.util.List;
 

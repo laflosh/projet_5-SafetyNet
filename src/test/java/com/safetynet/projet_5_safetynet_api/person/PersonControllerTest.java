@@ -87,7 +87,7 @@ class PersonControllerTest {
 		mockMvc.perform(delete("/person")
 				.param("firstName", firstName)
 				.param("lastName", lastNameName))
-			.andExpect(status().isNoContent())
+			.andExpect(status().isOk())
 			.andReturn();
 		
 	}

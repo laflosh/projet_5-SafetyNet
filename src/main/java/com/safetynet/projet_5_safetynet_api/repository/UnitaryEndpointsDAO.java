@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
-import com.safetynet.projet_5_safetynet_api.dtos.ListOfElements;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
 import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.model.Person;
@@ -294,6 +293,10 @@ public class UnitaryEndpointsDAO {
 		
 	}
 	
+	/**
+	 * @param stationNumbers
+	 * @return
+	 */
 	public List<Object> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
 		
 		List<Firestation> requestFirestations = new ArrayList<Firestation>();

@@ -86,7 +86,7 @@ class MedicalrecordControllerTest {
 		mockMvc.perform(delete("/medicalrecord")
 				.param("firstName", firstName)
 				.param("lastName", lastName))
-			.andExpect(status().isNoContent())
+			.andExpect(status().isOk())
 			.andReturn();
 		
 	}

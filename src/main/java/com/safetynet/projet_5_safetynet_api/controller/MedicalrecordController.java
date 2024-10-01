@@ -37,7 +37,7 @@ public class MedicalrecordController {
 	 * @throws DatabindException
 	 * @throws IOException
 	 */
-	@GetMapping
+	@GetMapping("/all")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Medicalrecord> getAllMedicalrecords() throws StreamReadException, DatabindException, IOException{
 		
@@ -80,7 +80,7 @@ public class MedicalrecordController {
 	 * @throws IOException
 	 */
 	@DeleteMapping
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteAMedicalrecord(@RequestParam(required = false, value = "firstName") String firstName, @RequestParam(required = false, value = "lastName") String lastName) throws StreamWriteException, DatabindException, IOException {
 		
 		medicalrecordService.deleteAMedicalrecord(firstName, lastName);

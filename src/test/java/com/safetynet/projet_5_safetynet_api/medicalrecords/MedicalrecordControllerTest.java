@@ -1,14 +1,15 @@
 package com.safetynet.projet_5_safetynet_api.medicalrecords;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.hamcrest.Matchers;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,10 @@ class MedicalrecordControllerTest {
 	@Test
 	void testGetAllMedicalrecordsAndReturnOk() throws Exception {
 		
-		mockMvc.perform(get("/medicalrecord"))
+		mockMvc.perform(get("/medicalrecord/all"))
+			.andDo(print())
 			.andExpect(status().isOk())
-			.andReturn();
+			.andExpect(jsonPath("$", Matchers.not(Matchers.empty())));
 		
 	}
 	
@@ -53,8 +55,7 @@ class MedicalrecordControllerTest {
 		String requestJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(medicalrecord);
 		
 		mockMvc.perform(post("/medicalrecord").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-			.andExpect(status().isCreated())
-			.andReturn();
+			.andExpect(status().isCreated());
 		
 	}
 	
@@ -70,8 +71,7 @@ class MedicalrecordControllerTest {
 		String requestJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(medicalrecord);
 		
 		mockMvc.perform(put("/medicalrecord").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-			.andExpect(status().isOk())
-			.andReturn();
+			.andExpect(status().isOk());
 		
 	}
 	
@@ -86,8 +86,7 @@ class MedicalrecordControllerTest {
 		mockMvc.perform(delete("/medicalrecord")
 				.param("firstName", firstName)
 				.param("lastName", lastName))
-			.andExpect(status().isOk())
-			.andReturn();
+			.andExpect(status().isOk());
 		
 	}
 

@@ -1,10 +1,15 @@
 package com.safetynet.projet_5_safetynet_api.person;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.hamcrest.Matchers;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +36,12 @@ class PersonControllerTest {
 	@Test
 	public void testGetAllPersonsAndReturnOk() throws Exception {
 		
-		mockMvc.perform(get("/person"))
+		mockMvc.perform(get("/person/all"))
+			.andDo(print())
 			.andExpect(status().isOk())
-			.andReturn();
-			//.andExpect(content().contentType(ListOfElements List<Person>));
+			.andExpect(jsonPath("$", Matchers.not(Matchers.empty())))
+			.andExpect(jsonPath("$",Matchers.hasSize(23)));;
+
 		
 	}
 	
@@ -52,8 +59,7 @@ class PersonControllerTest {
 		String requestJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(person);
 		
 		mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-			.andExpect(status().isCreated())
-			.andReturn();
+			.andExpect(status().isCreated());
 		
 	}
 	
@@ -71,8 +77,7 @@ class PersonControllerTest {
 		String requestJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(person);
 		
 		mockMvc.perform(put("/person").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-			.andExpect(status().isOk())
-			.andReturn();
+			.andExpect(status().isOk());
 		
 	}
 	
@@ -87,8 +92,7 @@ class PersonControllerTest {
 		mockMvc.perform(delete("/person")
 				.param("firstName", firstName)
 				.param("lastName", lastNameName))
-			.andExpect(status().isOk())
-			.andReturn();
+			.andExpect(status().isOk());
 		
 	}
 

@@ -58,7 +58,7 @@ public class PersonController {
 		
 		if(person == null) {
 			
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "person is null").build();
 			
 		} else {
 			
@@ -100,7 +100,7 @@ public class PersonController {
 		
 		if(person == null) {
 			
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "person is null").build();
 			
 		} else {
 			

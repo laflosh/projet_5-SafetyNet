@@ -39,8 +39,8 @@ public class PersonDAO {
 		
 		if(elements == null) {
 			
-			logger.info("Fetching all data saved in the JSON file.");
 			elements = dataManager.getAllData();
+			logger.info("Fetching all data saved in the JSON file.");
 			
 		}
 		
@@ -100,8 +100,8 @@ public class PersonDAO {
 			
 		}
 		
-		logger.info("The person is deleted in the JSON file.");
 		dataManager.writeData(elements);
+		logger.info("The person is deleted in the JSON file.");
 		
 	}
 	
@@ -136,8 +136,8 @@ public class PersonDAO {
 				
 		}
 			
-		logger.info("The person is updated in the JSON file.");
 		dataManager.writeData(elements);
+		logger.info("The person is updated in the JSON file.");
 		
 		return updatePerson;
 	}

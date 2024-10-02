@@ -11,27 +11,19 @@ public class FirestationWithPersons {
 	private List<PersonWithMedicalrecordPhone> persons;
 	
 	public Firestation getFirestation() {
-		
 		return firestation;
-		
 	}
 	
 	public void setFirestation(Firestation firestation) {
-		
 		this.firestation = firestation;
-		
 	}
 	
 	public List<PersonWithMedicalrecordPhone> getPersons(){
-		
 		return persons;
-		
 	}
 	
 	public void setPersons(List<PersonWithMedicalrecordPhone> persons) {
-		
 		this.persons = persons;
-		
 	}
 	
 }

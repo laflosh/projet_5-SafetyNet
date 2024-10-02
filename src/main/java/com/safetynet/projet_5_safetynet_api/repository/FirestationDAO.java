@@ -38,8 +38,8 @@ public class FirestationDAO {
 		
 		if(elements == null) {
 			
-			logger.info("Fetching all data saved in the JSON file.");
 			elements = dataManager.getAllData();
+			logger.info("Fetching all data saved in the JSON file.");
 			
 		}
 		
@@ -102,8 +102,8 @@ public class FirestationDAO {
 			
 		}
 		
-		logger.info("The firestation is deleted in the JSON file.");
 		dataManager.writeData(elements);
+		logger.info("The firestation is deleted in the JSON file.");
 		
 	}
 	
@@ -134,8 +134,8 @@ public class FirestationDAO {
 			
 		}
 		
-		logger.info("The firestation is updated in the JSON file.");
 		dataManager.writeData(elements);
+		logger.info("The firestation is updated in the JSON file.");
 		
 		return updateFirestation;
 	}

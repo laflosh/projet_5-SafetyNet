@@ -58,7 +58,7 @@ public class FirestationController {
 		
 		if(firestation == null) {
 			
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "firestation is null").build();
 			
 		} else {
 			
@@ -98,7 +98,7 @@ public class FirestationController {
 		
 		if(firestation == null) {
 			
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "firestation is null").build();
 			
 		} else {
 			

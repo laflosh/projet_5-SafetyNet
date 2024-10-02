@@ -38,8 +38,8 @@ public class MedicalrecordDAO {
 		
 		if(elements == null) {
 			
-			logger.info("Fetching all data saved in the JSON file.");
 			elements = dataManager.getAllData();
+			logger.info("Fetching all data saved in the JSON file.");
 			
 		}
 		
@@ -102,8 +102,8 @@ public class MedicalrecordDAO {
 			
 		}
 		
-		logger.info("The medicalrecord is deleted in the JSON file.");
 		dataManager.writeData(elements);
+		logger.info("The medicalrecord is deleted in the JSON file.");
 		
 	}
 
@@ -136,8 +136,8 @@ public class MedicalrecordDAO {
 			
 		}
 		
-		logger.info("The medicalrecord is updated in the JSON file.");
 		dataManager.writeData(elements);
+		logger.info("The medicalrecord is updated in the JSON file.");
 		
 		return updateMedicalrecord;
 		

@@ -58,7 +58,7 @@ public class MedicalrecordController {
 		
 		if(medicalrecord == null) {
 			
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "medicalrecord is null").build();
 			
 		} else {
 			
@@ -99,7 +99,7 @@ public class MedicalrecordController {
 		
 	if(medicalrecord == null) {
 			
-			return (ResponseEntity<?>) ResponseEntity.badRequest();
+			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "medicalrecord is null").build();
 			
 		} else {
 			

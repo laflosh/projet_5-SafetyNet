@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FirestationDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projet_5_safetynet_api</a> &gt; <a href="index.source.html" class="el_package">com.safetynet.projet_5_safetynet_api.repository</a> &gt; <span class="el_source">FirestationDAO.java</span></div><h1>FirestationDAO.java</h1><pre class="source lang-java linenums">package com.safetynet.projet_5_safetynet_api.repository;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
+import com.safetynet.projet_5_safetynet_api.model.Firestation;
+import com.safetynet.projet_5_safetynet_api.util.DataManager;
+
+import jakarta.annotation.PostConstruct;
+
+@Repository
+<span class="fc" id="L22">public class FirestationDAO {</span>
+
+<span class="fc" id="L24">	private static Logger logger = LogManager.getLogger(&quot;FirestationDAO&quot;);</span>
+	
+	@Autowired
+	DataManager dataManager;
+	
+<span class="fc" id="L29">	ListOfElements elements = null;</span>
+	
+	/**
+	 * @throws StreamReadException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	@PostConstruct
+	public void initData() throws StreamReadException, DatabindException, IOException {
+		
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">		if(elements == null) {</span>
+			
+<span class="fc" id="L41">			logger.info(&quot;Fetching all data saved in the JSON file.&quot;);</span>
+<span class="fc" id="L42">			elements = dataManager.getAllData();</span>
+			
+		}
+		
+<span class="fc" id="L46">	}</span>
+	
+	/**
+	 * @return
+	 * @throws StreamReadException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public List&lt;Firestation&gt; getAllFirestations() throws StreamReadException, DatabindException, IOException {
+
+<span class="fc" id="L56">		logger.info(&quot;Return all firestations saved in the JSON file.&quot;);</span>
+<span class="fc" id="L57">		return elements.getFirestations();</span>
+		
+	}
+	
+	/**
+	 * @param firestation
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public Firestation saveAFirestation(Firestation firestation) throws StreamWriteException, DatabindException, IOException {
+		
+<span class="fc" id="L70">		List&lt;Firestation&gt; firestations = elements.getFirestations();</span>
+		
+<span class="fc" id="L72">		firestations.add(firestation);</span>
+		
+<span class="fc" id="L74">		dataManager.writeData(elements);</span>
+		
+<span class="fc" id="L76">		logger.info(&quot;The firestation is saved in the JSON file.&quot;);</span>
+<span class="fc" id="L77">		return firestation;</span>
+		
+	}
+	
+	/**
+	 * @param address
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public void deleteAFirestation(String address) throws StreamWriteException, DatabindException, IOException {
+		
+<span class="fc" id="L89">		List&lt;Firestation&gt; firestations = elements.getFirestations();</span>
+		
+<span class="fc" id="L91">		Iterator&lt;Firestation&gt; firestationsIterator = firestations.iterator();</span>
+		
+<span class="fc bfc" id="L93" title="All 2 branches covered.">		while(firestationsIterator.hasNext()) {</span>
+			
+<span class="fc" id="L95">			Firestation firestation = firestationsIterator.next();</span>
+			
+<span class="fc bfc" id="L97" title="All 2 branches covered.">			if(firestation.getAddress().equals(address)) {</span>
+				
+<span class="fc" id="L99">				firestationsIterator.remove();</span>
+				
+			}
+			
+<span class="fc" id="L103">		}</span>
+		
+<span class="fc" id="L105">		logger.info(&quot;The firestation is deleted in the JSON file.&quot;);</span>
+<span class="fc" id="L106">		dataManager.writeData(elements);</span>
+		
+<span class="fc" id="L108">	}</span>
+	
+	/**
+	 * @param updateFirestation
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public Firestation updateAFirestation(Firestation updateFirestation) throws StreamWriteException, DatabindException, IOException {
+		
+<span class="fc" id="L119">		List&lt;Firestation&gt; firestations = elements.getFirestations();</span>
+		
+<span class="fc" id="L121">		Iterator&lt;Firestation&gt; firestationsIterator = firestations.iterator();</span>
+		
+<span class="fc bfc" id="L123" title="All 2 branches covered.">		while(firestationsIterator.hasNext()) {</span>
+			
+<span class="fc" id="L125">			Firestation firestation = firestationsIterator.next();</span>
+			
+<span class="fc bfc" id="L127" title="All 2 branches covered.">			if(firestation.getAddress().equals(updateFirestation.getAddress())) {</span>
+				
+<span class="fc" id="L129">				firestation.setStation(updateFirestation.getStation());</span>
+				
+<span class="fc" id="L131">				updateFirestation = firestation;</span>
+				
+			}
+			
+<span class="fc" id="L135">		}</span>
+		
+<span class="fc" id="L137">		logger.info(&quot;The firestation is updated in the JSON file.&quot;);</span>
+<span class="fc" id="L138">		dataManager.writeData(elements);</span>
+		
+<span class="fc" id="L140">		return updateFirestation;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

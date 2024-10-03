@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projet_5_safetynet_api</a> &gt; <a href="index.source.html" class="el_package">com.safetynet.projet_5_safetynet_api.util</a> &gt; <span class="el_source">DataManager.java</span></div><h1>DataManager.java</h1><pre class="source lang-java linenums">package com.safetynet.projet_5_safetynet_api.util;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
+
+@Component
+<span class="fc" id="L18">public class DataManager {</span>
+	
+<span class="fc" id="L20">	private static Logger logger = LogManager.getLogger(&quot;DataManager&quot;);</span>
+
+<span class="fc" id="L22">	private String dataPath = &quot;C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json&quot;;</span>
+	
+<span class="fc" id="L24">	ListOfElements elements = null;</span>
+	
+	@Autowired
+	ObjectMapper objectMapper;
+	
+	public  ListOfElements getAllData() throws StreamReadException, DatabindException, IOException{
+		
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if(elements == null) {</span>
+			
+<span class="fc" id="L33">			elements = objectMapper.readValue(new File(dataPath), ListOfElements.class);</span>
+			
+		}
+		
+<span class="fc" id="L37">		return elements;</span>
+
+	}
+	
+	public void writeData(ListOfElements elements) throws StreamWriteException, DatabindException, IOException {
+		
+<span class="fc" id="L43">		logger.info(&quot;Saving all the data in the JSON file.&quot;);</span>
+<span class="fc" id="L44">		objectMapper</span>
+<span class="fc" id="L45">		.writerWithDefaultPrettyPrinter()</span>
+<span class="fc" id="L46">		.writeValue(new File(dataPath), elements);</span>
+		
+<span class="fc" id="L48">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

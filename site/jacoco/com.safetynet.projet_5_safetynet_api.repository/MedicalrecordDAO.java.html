@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MedicalrecordDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projet_5_safetynet_api</a> &gt; <a href="index.source.html" class="el_package">com.safetynet.projet_5_safetynet_api.repository</a> &gt; <span class="el_source">MedicalrecordDAO.java</span></div><h1>MedicalrecordDAO.java</h1><pre class="source lang-java linenums">package com.safetynet.projet_5_safetynet_api.repository;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
+import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
+import com.safetynet.projet_5_safetynet_api.util.DataManager;
+
+import jakarta.annotation.PostConstruct;
+
+@Repository
+<span class="fc" id="L22">public class MedicalrecordDAO {</span>
+
+<span class="fc" id="L24">	private static Logger logger = LogManager.getLogger(&quot;MedicalrecordsDAO&quot;);</span>
+	
+	@Autowired
+	DataManager dataManager;
+	
+<span class="fc" id="L29">	ListOfElements elements = null;</span>
+	
+	/**
+	 * @throws StreamReadException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	@PostConstruct
+	public void initData() throws StreamReadException, DatabindException, IOException {
+		
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">		if(elements == null) {</span>
+			
+<span class="fc" id="L41">			logger.info(&quot;Fetching all data saved in the JSON file.&quot;);</span>
+<span class="fc" id="L42">			elements = dataManager.getAllData();</span>
+			
+		}
+		
+<span class="fc" id="L46">	}</span>
+	
+	/**
+	 * @return
+	 * @throws StreamReadException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public List&lt;Medicalrecord&gt; getAllMedicalrecords() throws StreamReadException, DatabindException, IOException {
+		
+<span class="fc" id="L56">		logger.info(&quot;Return all medicalrecords saved in the JSON file.&quot;);</span>
+<span class="fc" id="L57">		return elements.getMedicalrecords();</span>
+		
+	}
+	
+	/**
+	 * @param medicalrecord
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public Object saveAMedicalrecord(Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException {
+
+<span class="fc" id="L70">		List&lt;Medicalrecord&gt; medicalrecords = elements.getMedicalrecords();</span>
+		
+<span class="fc" id="L72">		medicalrecords.add(medicalrecord);</span>
+		
+<span class="fc" id="L74">		dataManager.writeData(elements);</span>
+		
+<span class="fc" id="L76">		logger.info(&quot;Saving a medicalrecord in the JSON file.&quot;);</span>
+<span class="fc" id="L77">		return medicalrecord;</span>
+	}
+
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public void deleteAMedicalrecord(String firstName, String lastName) throws StreamWriteException, DatabindException, IOException {
+		
+<span class="fc" id="L89">		List&lt;Medicalrecord&gt; medicalrecords = elements.getMedicalrecords();</span>
+		
+<span class="fc" id="L91">		Iterator&lt;Medicalrecord&gt; medicalrecordsIterator = medicalrecords.iterator();</span>
+		
+<span class="fc bfc" id="L93" title="All 2 branches covered.">		while(medicalrecordsIterator.hasNext()) {</span>
+			
+<span class="fc" id="L95">			Medicalrecord medicalrecord = medicalrecordsIterator.next();</span>
+			
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">			if(medicalrecord.getFirstName().equals(firstName) &amp;&amp; medicalrecord.getLastName().equals(lastName)) {</span>
+				
+<span class="fc" id="L99">				medicalrecordsIterator.remove();</span>
+				
+			}
+			
+<span class="fc" id="L103">		}</span>
+		
+<span class="fc" id="L105">		logger.info(&quot;The medicalrecord is deleted in the JSON file.&quot;);</span>
+<span class="fc" id="L106">		dataManager.writeData(elements);</span>
+		
+<span class="fc" id="L108">	}</span>
+
+	/**
+	 * @param updateMedicalrecord
+	 * @return
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	public Medicalrecord updateAMedicalrecord(Medicalrecord updateMedicalrecord) throws StreamWriteException, DatabindException, IOException {
+		
+<span class="fc" id="L119">		List&lt;Medicalrecord&gt; medicalrecords = elements.getMedicalrecords();</span>
+		
+<span class="fc" id="L121">		Iterator&lt;Medicalrecord&gt; medicalrecordsIterator = medicalrecords.iterator();</span>
+		
+<span class="fc bfc" id="L123" title="All 2 branches covered.">		while(medicalrecordsIterator.hasNext()) {</span>
+			
+<span class="fc" id="L125">			Medicalrecord medicalrecord = medicalrecordsIterator.next();</span>
+			
+<span class="pc bpc" id="L127" title="1 of 4 branches missed.">			if(medicalrecord.getFirstName().equals(updateMedicalrecord.getFirstName()) &amp;&amp; medicalrecord.getLastName().equals(updateMedicalrecord.getLastName())) {</span>
+				
+<span class="fc" id="L129">				medicalrecord.setBirthdate(updateMedicalrecord.getBirthdate());</span>
+<span class="fc" id="L130">				medicalrecord.setMedications(updateMedicalrecord.getMedications());</span>
+<span class="fc" id="L131">				medicalrecord.setAllergies(updateMedicalrecord.getAllergies());</span>
+				
+<span class="fc" id="L133">				updateMedicalrecord = medicalrecord;</span>
+				
+			}
+			
+<span class="fc" id="L137">		}</span>
+		
+<span class="fc" id="L139">		logger.info(&quot;The medicalrecord is updated in the JSON file.&quot;);</span>
+<span class="fc" id="L140">		dataManager.writeData(elements);</span>
+		
+<span class="fc" id="L142">		return updateMedicalrecord;</span>
+		
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

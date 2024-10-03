@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UnitaryEndpointsDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projet_5_safetynet_api</a> &gt; <a href="index.source.html" class="el_package">com.safetynet.projet_5_safetynet_api.repository</a> &gt; <span class="el_source">UnitaryEndpointsDAO.java</span></div><h1>UnitaryEndpointsDAO.java</h1><pre class="source lang-java linenums">package com.safetynet.projet_5_safetynet_api.repository;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
+import com.safetynet.projet_5_safetynet_api.model.Firestation;
+import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
+import com.safetynet.projet_5_safetynet_api.model.Person;
+import com.safetynet.projet_5_safetynet_api.specificModels.Child;
+import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
+import com.safetynet.projet_5_safetynet_api.specificModels.Parent;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonSpecificInfo;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordPhone;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
+import com.safetynet.projet_5_safetynet_api.util.DataManager;
+
+import jakarta.annotation.PostConstruct;
+
+@Repository
+<span class="fc" id="L36">public class UnitaryEndpointsDAO {</span>
+	
+<span class="fc" id="L38">	private static Logger logger = LogManager.getLogger(&quot;UnitaryEndpointsDAO&quot;);</span>
+	
+	@Autowired
+	DataManager dataManager;
+	
+<span class="fc" id="L43">	ListOfElements elements = null;</span>
+	
+<span class="fc" id="L45">	List&lt;Person&gt; persons = null;</span>
+<span class="fc" id="L46">	List&lt;Firestation&gt; firestations = null;</span>
+<span class="fc" id="L47">	List&lt;Medicalrecord&gt; medicalrecords = null;</span>
+	
+	/**
+	 * @throws StreamReadException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
+	@PostConstruct
+	public void initData() throws StreamReadException, DatabindException, IOException {
+		
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">		if(elements == null) {</span>
+			
+<span class="fc" id="L59">			logger.info(&quot;Fetching all data saved in the JSON file.&quot;);</span>
+<span class="fc" id="L60">			elements = dataManager.getAllData();</span>
+<span class="fc" id="L61">			persons = elements.getPersons();</span>
+<span class="fc" id="L62">			firestations = elements.getFirestations();</span>
+<span class="fc" id="L63">			medicalrecords = elements.getMedicalrecords();</span>
+			
+		}
+		
+<span class="fc" id="L67">	}</span>
+
+	/**
+	 * @param stationNumber
+	 * @return PersonWithCount
+	 * @throws ParseException 
+	 */
+	public PersonsWithCount getPersonsDependingOnTheStationNumber(int stationNumber) throws ParseException {
+		
+<span class="fc" id="L76">		PersonsWithCount personWithCount = new PersonsWithCount();</span>
+		
+		//firestationsRequest will have only the stations and address equal to the stationNumber variable
+<span class="fc" id="L79">		List&lt;Firestation&gt; firestationsRequest = new ArrayList&lt;Firestation&gt;();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">		for(Firestation firestation : firestations) {</span>
+			
+<span class="fc bfc" id="L82" title="All 2 branches covered.">			if(firestation.getStation() == stationNumber) {</span>
+				
+<span class="fc" id="L84">				firestationsRequest.add(firestation);</span>
+				
+			}
+			
+<span class="fc" id="L88">		}</span>
+		
+		//Keep only the persons who have the same address as the stationNumber 
+		//Count adult and child depending on the birthdate in medicalrecords
+<span class="fc" id="L92">		List&lt;PersonSpecificInfo&gt; filterPersons = new ArrayList&lt;PersonSpecificInfo&gt;();</span>
+		
+<span class="fc" id="L94">		SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);</span>
+<span class="fc" id="L95">		LocalDate checkMajority = LocalDate.now().minusYears(18);</span>
+		
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		for(Person person : persons) {</span>
+			
+<span class="fc bfc" id="L99" title="All 2 branches covered.">			for(Firestation firestationRequest : firestationsRequest) {</span>
+				
+<span class="fc bfc" id="L101" title="All 2 branches covered.">				if(firestationRequest.getAddress().equals(person.getAddress())) {</span>
+					
+<span class="fc" id="L103">					PersonSpecificInfo personSpecifiInfo = new PersonSpecificInfo();</span>
+					
+<span class="fc" id="L105">					personSpecifiInfo.setFirstName(person.getFirstName());</span>
+<span class="fc" id="L106">					personSpecifiInfo.setLastName(person.getLastName());</span>
+<span class="fc" id="L107">					personSpecifiInfo.setAddress(person.getAddress());</span>
+<span class="fc" id="L108">					personSpecifiInfo.setPhone(person.getPhone());</span>
+					
+<span class="fc" id="L110">					filterPersons.add(personSpecifiInfo);</span>
+					
+<span class="fc bfc" id="L112" title="All 2 branches covered.">					for(Medicalrecord medicalrecord : medicalrecords) {</span>
+						
+<span class="pc bpc" id="L114" title="1 of 4 branches missed.">						if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) &amp;&amp; medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())) {</span>
+							
+<span class="fc" id="L116">							Date input = sdf.parse(medicalrecord.getBirthdate());</span>
+<span class="fc" id="L117">							LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span>
+							
+<span class="fc bfc" id="L119" title="All 2 branches covered.">							if(birthdate.isBefore(checkMajority)) {</span>
+								
+<span class="fc bfc" id="L121" title="All 2 branches covered.">								if(personWithCount.getAdultCount() &lt;= 0) {</span>
+									
+<span class="fc" id="L123">									personWithCount.setAdultCount(1);</span>
+									
+								} else {
+									
+<span class="fc" id="L127">									personWithCount.setAdultCount(personWithCount.getAdultCount() + 1);</span>
+									
+								}
+													
+							} else {
+								
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">								if(personWithCount.getChildCount() &lt;= 0) {</span>
+									
+<span class="fc" id="L135">									personWithCount.setChildCount(1);</span>
+									
+								} else {
+									
+<span class="nc" id="L139">									personWithCount.setChildCount(personWithCount.getChildCount() + 1);</span>
+									
+								}
+								
+							}
+							
+						}
+						
+<span class="fc" id="L147">					}</span>
+					
+				}
+				
+<span class="fc" id="L151">			}</span>
+			
+<span class="fc" id="L153">			personWithCount.setPersons(filterPersons);</span>
+			
+<span class="fc" id="L155">		}</span>
+		
+<span class="fc" id="L157">		logger.info(&quot;Return all the Persons with the same address of the stationNumber saved in the JSON file.&quot;);</span>
+<span class="fc" id="L158">		return personWithCount;</span>
+		
+	}
+
+	/**
+	 * @param address
+	 * @return
+	 * @throws ParseException
+	 */
+	public HouseMember getAllChildrenDependingOnTheAddress(String address) throws ParseException {
+		
+<span class="fc" id="L169">		HouseMember houseMember = new HouseMember();</span>
+		
+		//List for adding the child depending of the address and parent of the child
+<span class="fc" id="L172">		List&lt;Child&gt; childList = new ArrayList&lt;Child&gt;();</span>
+<span class="fc" id="L173">		List&lt;Parent&gt; parentList = new ArrayList&lt;Parent&gt;();</span>
+		
+<span class="fc" id="L175">		SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);</span>
+<span class="fc" id="L176">		LocalDate checkMajority = LocalDate.now().minusYears(18);</span>
+		
+		//Add the child who living in the address
+		//Else add house members in a another List who living in the address
+<span class="fc bfc" id="L180" title="All 2 branches covered.">		for(Person person : persons) {</span>
+			
+<span class="fc bfc" id="L182" title="All 2 branches covered.">			if(person.getAddress().equals(address)) {</span>
+				
+<span class="fc bfc" id="L184" title="All 2 branches covered.">				for(Medicalrecord medicalrecord : medicalrecords) {</span>
+					
+<span class="pc bpc" id="L186" title="1 of 4 branches missed.">					if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) &amp;&amp; medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())) {</span>
+						
+<span class="fc" id="L188">						Date input = sdf.parse(medicalrecord.getBirthdate());</span>
+<span class="fc" id="L189">						LocalDate birthdate = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span>
+						
+<span class="fc bfc" id="L191" title="All 2 branches covered.">						if(birthdate.isAfter(checkMajority)) {</span>
+							
+<span class="fc" id="L193">							Child child = new Child();</span>
+							
+<span class="fc" id="L195">							child.setFirstName(person.getFirstName());</span>
+<span class="fc" id="L196">							child.setLastName(person.getLastName());</span>
+<span class="fc" id="L197">							child.setBirthdate(medicalrecord.getBirthdate());</span>
+							
+<span class="fc" id="L199">							childList.add(child);</span>
+							
+<span class="fc" id="L201">						} else {</span>
+							
+<span class="fc" id="L203">							Parent parent = new Parent();</span>
+							
+<span class="fc" id="L205">							parent.setFirstName(person.getFirstName());</span>
+<span class="fc" id="L206">							parent.setLastName(person.getLastName());</span>
+							
+<span class="fc" id="L208">							parentList.add(parent);</span>
+							
+						}
+						
+					}
+					
+<span class="fc" id="L214">				}</span>
+				
+			}
+			
+<span class="fc" id="L218">			houseMember.setChild(childList);</span>
+<span class="fc" id="L219">			houseMember.setParent(parentList);</span>
+			
+<span class="fc" id="L221">		}</span>
+		
+<span class="fc" id="L223">		logger.info(&quot;Return all children depending of the address and their house members saved in the JSON file.&quot;);</span>
+<span class="fc" id="L224">		return houseMember;</span>
+		
+	}
+
+	/**
+	 * @param firestationNumber
+	 * @return
+	 */
+	public List&lt;String&gt; getAllThePhoneNumberDependingOnTheFirestationNumber(int firestationNumber) {
+		
+<span class="fc" id="L234">		List&lt;String&gt; phoneNumberList = new ArrayList&lt;String&gt;();</span>
+		
+		//firestationsRequest will have only the stations and address equal to the stationNumber variable
+<span class="fc" id="L237">		List&lt;Firestation&gt; firestationsRequest = new ArrayList&lt;Firestation&gt;();</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">		for(Firestation firestation : firestations) {</span>
+			
+<span class="fc bfc" id="L240" title="All 2 branches covered.">			if(firestation.getStation() == firestationNumber) {</span>
+				
+<span class="fc" id="L242">				firestationsRequest.add(firestation);</span>
+				
+			}
+			
+<span class="fc" id="L246">		}</span>
+		
+		//Add the phone number for the person who has the same address as the firestation
+<span class="fc bfc" id="L249" title="All 2 branches covered.">		for(Person person : persons) {</span>
+			
+<span class="fc bfc" id="L251" title="All 2 branches covered.">			for(Firestation firestationRequest : firestationsRequest) {</span>
+				
+<span class="fc bfc" id="L253" title="All 2 branches covered.">				if(firestationRequest.getAddress().equals(person.getAddress())) {</span>
+					
+<span class="fc" id="L255">					phoneNumberList.add(person.getPhone());</span>
+					
+				}
+				
+<span class="fc" id="L259">			}</span>
+			
+<span class="fc" id="L261">		}</span>
+		
+<span class="fc" id="L263">		logger.info(&quot;Return the phone numbers de^pending oh the firestation number given saved in the JSON file.&quot;);</span>
+<span class="fc" id="L264">		return phoneNumberList;</span>
+	}
+	
+	/**
+	 * @param address
+	 * @return
+	 */
+	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
+
+<span class="fc" id="L273">		Firestation firestationRequest = new Firestation();</span>
+		
+<span class="fc bfc" id="L275" title="All 2 branches covered.">		for(Firestation firestation : firestations) {</span>
+			
+<span class="fc bfc" id="L277" title="All 2 branches covered.">			if(firestation.getAddress().equals(address)) {</span>
+				
+<span class="fc" id="L279">				firestationRequest.setAddress(firestation.getAddress());</span>
+<span class="fc" id="L280">				firestationRequest.setStation(firestation.getStation());</span>
+				
+			}
+			
+<span class="fc" id="L284">		}</span>
+		
+<span class="fc" id="L286">		FirestationWithPersons firestationWithpersons = new FirestationWithPersons (); </span>
+<span class="fc" id="L287">		List&lt;PersonWithMedicalrecordPhone&gt; livingPersons = new ArrayList&lt;PersonWithMedicalrecordPhone&gt;();</span>
+		
+<span class="fc" id="L289">		firestationWithpersons.setFirestation(firestationRequest);</span>
+		
+<span class="fc bfc" id="L291" title="All 2 branches covered.">		for(Person person : persons) {</span>
+			
+<span class="fc bfc" id="L293" title="All 2 branches covered.">			if(person.getAddress().equals(firestationRequest.getAddress())) {</span>
+				
+<span class="fc bfc" id="L295" title="All 2 branches covered.">				for(Medicalrecord medicalrecord : medicalrecords) {</span>
+					
+<span class="pc bpc" id="L297" title="1 of 4 branches missed.">					if(medicalrecord.getFirstName().equalsIgnoreCase(person.getFirstName()) &amp;&amp; medicalrecord.getLastName().equalsIgnoreCase(person.getLastName())){</span>
+						
+<span class="fc" id="L299">						PersonWithMedicalrecordPhone personWithMedicalrecord = new PersonWithMedicalrecordPhone();</span>
+						
+<span class="fc" id="L301">						personWithMedicalrecord.setFirstName(person.getFirstName());</span>
+<span class="fc" id="L302">						personWithMedicalrecord.setLastName(person.getLastName());</span>
+<span class="fc" id="L303">						personWithMedicalrecord.setBirthdate(medicalrecord.getBirthdate());</span>
+<span class="fc" id="L304">						personWithMedicalrecord.setPhone(person.getPhone());</span>
+<span class="fc" id="L305">						personWithMedicalrecord.setMedications(medicalrecord.getMedications());</span>
+<span class="fc" id="L306">						personWithMedicalrecord.setAllergies(medicalrecord.getAllergies());</span>
+						
+<span class="fc" id="L308">						livingPersons.add(personWithMedicalrecord);</span>
+						
+					}
+					
+<span class="fc" id="L312">				}</span>
+				
+			}
+			
+<span class="fc" id="L316">			firestationWithpersons.setPersons(livingPersons);</span>
+			
+<span class="fc" id="L318">		}</span>
+		
+<span class="fc" id="L320">		logger.info(&quot;Return all the Persons living in the same address and the firestation saved in the JSON file.&quot;);</span>
+<span class="fc" id="L321">		return firestationWithpersons;</span>
+		
+	}
+	
+	/**
+	 * @param stationNumbers
+	 * @return
+	 */
+	public List&lt;FirestationWithPersons&gt; getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
+		
+<span class="fc" id="L331">		List&lt;Firestation&gt; requestFirestations = new ArrayList&lt;Firestation&gt;();</span>
+		
+<span class="fc bfc" id="L333" title="All 2 branches covered.">		for(int stationNumber : stationNumbers) {</span>
+			
+<span class="fc bfc" id="L335" title="All 2 branches covered.">			for(Firestation firestation : firestations) {</span>
+				
+<span class="fc bfc" id="L337" title="All 2 branches covered.">				if(firestation.getStation() == stationNumber) {</span>
+					
+<span class="fc" id="L339">					requestFirestations.add(firestation);</span>
+					
+				}
+				
+<span class="fc" id="L343">			}</span>
+			
+		}
+		
+<span class="fc" id="L347">		List&lt;FirestationWithPersons&gt; personsInfoDependingFirestation = new ArrayList&lt;FirestationWithPersons&gt;();</span>
+		
+<span class="fc bfc" id="L349" title="All 2 branches covered.">		for(Firestation requestFirestation : requestFirestations) {</span>
+			
+<span class="fc" id="L351">			FirestationWithPersons firestationWithPersons = new FirestationWithPersons();</span>
+<span class="fc" id="L352">			List&lt;PersonWithMedicalrecordPhone&gt; personsInfo = new ArrayList&lt;PersonWithMedicalrecordPhone&gt;();</span>
+			
+<span class="fc" id="L354">			firestationWithPersons.setFirestation(requestFirestation);</span>
+			
+<span class="fc bfc" id="L356" title="All 2 branches covered.">			for(Person person : persons) {</span>
+				
+<span class="fc bfc" id="L358" title="All 2 branches covered.">				if(requestFirestation.getAddress().equals(person.getAddress())) {</span>
+					
+<span class="fc bfc" id="L360" title="All 2 branches covered.">					for(Medicalrecord medicalrecord : medicalrecords) {</span>
+						
+<span class="fc bfc" id="L362" title="All 4 branches covered.">						if(medicalrecord.getLastName().equals(person.getLastName()) &amp;&amp; medicalrecord.getFirstName().equals(person.getFirstName())) {</span>
+							
+<span class="fc" id="L364">							PersonWithMedicalrecordPhone personWithMedicalrecord = new PersonWithMedicalrecordPhone();</span>
+						
+<span class="fc" id="L366">							personWithMedicalrecord.setFirstName(person.getFirstName());</span>
+<span class="fc" id="L367">							personWithMedicalrecord.setLastName( person.getLastName());</span>
+<span class="fc" id="L368">							personWithMedicalrecord.setBirthdate(medicalrecord.getBirthdate());</span>
+<span class="fc" id="L369">							personWithMedicalrecord.setPhone(person.getPhone());</span>
+<span class="fc" id="L370">							personWithMedicalrecord.setMedications(medicalrecord.getMedications());</span>
+<span class="fc" id="L371">							personWithMedicalrecord.setAllergies(medicalrecord.getAllergies());</span>
+							
+<span class="fc" id="L373">							personsInfo.add(personWithMedicalrecord);</span>
+							
+						}
+						
+<span class="fc" id="L377">					}</span>
+					
+				}
+				
+<span class="fc" id="L381">				firestationWithPersons.setPersons(personsInfo);</span>
+				
+<span class="fc" id="L383">			}</span>
+			
+<span class="fc" id="L385">			personsInfoDependingFirestation.add(firestationWithPersons);</span>
+			
+<span class="fc" id="L387">		}</span>
+		
+<span class="fc" id="L389">		return personsInfoDependingFirestation;</span>
+		
+	}
+	
+	/**
+	 * @param lastName
+	 * @return
+	 */
+	public List&lt;PersonWithMedicalrecordEmail&gt; getAllInformationsOnAPersonDependingLastName(String lastName) {
+
+<span class="fc" id="L399">		List&lt;PersonWithMedicalrecordEmail&gt; personsInfo = new ArrayList&lt;PersonWithMedicalrecordEmail&gt;();</span>
+		
+<span class="fc bfc" id="L401" title="All 2 branches covered.">		for(Person person : persons) {</span>
+			
+<span class="fc bfc" id="L403" title="All 2 branches covered.">			if(person.getLastName().equals(lastName)) {</span>
+				
+<span class="fc bfc" id="L405" title="All 2 branches covered.">				for(Medicalrecord medicalrecord : medicalrecords) {</span>
+					
+<span class="fc bfc" id="L407" title="All 4 branches covered.">					if(medicalrecord.getLastName().equals(person.getLastName()) &amp;&amp; medicalrecord.getFirstName().equals(person.getFirstName())) {</span>
+						
+<span class="fc" id="L409">						PersonWithMedicalrecordEmail personWithMedicalrecordEmail = new PersonWithMedicalrecordEmail();</span>
+						
+<span class="fc" id="L411">						personWithMedicalrecordEmail.setFirstName(person.getFirstName());</span>
+<span class="fc" id="L412">						personWithMedicalrecordEmail.setLastName(person.getLastName());</span>
+<span class="fc" id="L413">						personWithMedicalrecordEmail.setBirthdate(medicalrecord.getBirthdate());</span>
+<span class="fc" id="L414">						personWithMedicalrecordEmail.setEmail(person.getEmail());</span>
+<span class="fc" id="L415">						personWithMedicalrecordEmail.setMedications(medicalrecord.getMedications());</span>
+<span class="fc" id="L416">						personWithMedicalrecordEmail.setAllergies(medicalrecord.getAllergies());</span>
+						
+<span class="fc" id="L418">						personsInfo.add(personWithMedicalrecordEmail);</span>
+						
+					}
+					
+<span class="fc" id="L422">				}</span>
+				
+			}
+			
+<span class="fc" id="L426">		}</span>
+		
+<span class="fc" id="L428">		logger.info(&quot;Return all the Persons informations saved in the JSON file.&quot;);</span>
+<span class="fc" id="L429">		return personsInfo;</span>
+		
+	}
+
+
+	/**
+	 * @param city
+	 * @return
+	 */
+	public List&lt;String&gt; getAllEmailAddressDependingOfTheCity(String city) {
+		
+		//List of email address for the persons living in the variable city
+<span class="fc" id="L441">		List&lt;String&gt; emailList = new ArrayList&lt;String&gt;();</span>
+		
+		//Add the email address in the List
+<span class="fc bfc" id="L444" title="All 2 branches covered.">		for(Person person : persons) {</span>
+			
+<span class="pc bpc" id="L446" title="1 of 2 branches missed.">			if(person.getCity().equals(city)) {</span>
+				
+<span class="fc" id="L448">				emailList.add(person.getEmail());</span>
+				
+			}
+			
+<span class="fc" id="L452">		}</span>
+		
+<span class="fc" id="L454">		logger.info(&quot;Return all email address of persons in a city given saved in the JSON file.&quot;);</span>
+<span class="fc" id="L455">		return emailList;</span>
+		
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

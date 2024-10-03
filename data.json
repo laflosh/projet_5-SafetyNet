@@ -223,6 +223,9 @@
   }, {
     "address" : "951 LoneTree Rd",
     "station" : 2
+  }, {
+    "address" : "string",
+    "station" : 0
   } ],
   "medicalrecords" : [ {
     "firstName" : "John",
@@ -362,5 +365,5 @@
     "birthdate" : "08/06/1945",
     "medications" : [ "tradoxidine:400mg" ],
     "allergies" : [ ]
-  }]
+  } ]
 }

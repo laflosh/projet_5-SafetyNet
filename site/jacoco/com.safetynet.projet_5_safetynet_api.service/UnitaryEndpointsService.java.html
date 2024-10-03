@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UnitaryEndpointsService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projet_5_safetynet_api</a> &gt; <a href="index.source.html" class="el_package">com.safetynet.projet_5_safetynet_api.service</a> &gt; <span class="el_source">UnitaryEndpointsService.java</span></div><h1>UnitaryEndpointsService.java</h1><pre class="source lang-java linenums">package com.safetynet.projet_5_safetynet_api.service;
+
+import java.text.ParseException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.safetynet.projet_5_safetynet_api.repository.UnitaryEndpointsDAO;
+import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
+import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
+
+@Service
+<span class="fc" id="L16">public class UnitaryEndpointsService {</span>
+
+	@Autowired
+	UnitaryEndpointsDAO unitaryEndpointsDAO;
+	
+	public PersonsWithCount getPersonsDependingOnTheStationNumber(int stationNumber) throws ParseException {
+
+<span class="fc" id="L23">		return unitaryEndpointsDAO.getPersonsDependingOnTheStationNumber(stationNumber);</span>
+		
+	}
+
+	public HouseMember getAllChildrenDependingOnTheAddress(String address) throws ParseException {
+
+<span class="fc" id="L29">		return unitaryEndpointsDAO.getAllChildrenDependingOnTheAddress(address);</span>
+		
+	}
+
+	public List&lt;String&gt; getAllThePhoneNumberDependingOnTheFirestationNumber(int firestation) {
+
+<span class="fc" id="L35">		return unitaryEndpointsDAO.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);</span>
+		
+	}
+	
+	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
+
+<span class="fc" id="L41">		return unitaryEndpointsDAO.getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(address);</span>
+		
+	}
+	
+	public List&lt;FirestationWithPersons&gt; getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
+
+<span class="fc" id="L47">		return unitaryEndpointsDAO.getAllPersonsByFirestationNumber(stationNumbers);</span>
+		
+	}
+	
+	public List&lt;PersonWithMedicalrecordEmail&gt; getAllInformationsOnAPersonDependingLastName(String lastName) {
+
+<span class="fc" id="L53">		return unitaryEndpointsDAO.getAllInformationsOnAPersonDependingLastName(lastName);</span>
+		
+	}
+
+	public List&lt;String&gt; getAllEmailAddressDependingOfTheCity(String city) {
+
+<span class="fc" id="L59">		return unitaryEndpointsDAO.getAllEmailAddressDependingOfTheCity(city);</span>
+		
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

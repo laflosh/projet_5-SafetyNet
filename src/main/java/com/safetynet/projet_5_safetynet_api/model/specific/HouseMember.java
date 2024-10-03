@@ -1,7 +1,10 @@
-package com.safetynet.projet_5_safetynet_api.specificModels;
+package com.safetynet.projet_5_safetynet_api.model.specific;
 
 import java.util.List;
 
+/**
+ * The data's model for housemember and getter/setter methods for unitary endpoint "/childAlert?address=<address>"
+ */
 public class HouseMember {
 
 	private List<Child> child;

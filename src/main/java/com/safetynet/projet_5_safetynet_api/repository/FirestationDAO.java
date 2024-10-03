@@ -18,6 +18,9 @@ import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
 
+/**
+ * Class for managing the data about firestation of the CRUD methods
+ */
 @Repository
 public class FirestationDAO {
 
@@ -29,6 +32,8 @@ public class FirestationDAO {
 	ListOfElements elements = null;
 	
 	/**
+	 * Recovers all the data with DataManager object
+	 * 
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -46,7 +51,9 @@ public class FirestationDAO {
 	}
 	
 	/**
-	 * @return
+	 * Return the list of firestation in the object ListOfElements
+	 * 
+	 * @return A list of firestation
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -59,8 +66,10 @@ public class FirestationDAO {
 	}
 	
 	/**
-	 * @param firestation
-	 * @return
+	 * Add the new firestation in the firestation's list and writing to the json file
+	 * 
+	 * @param A object firestation
+	 * @return The firestation created
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -79,7 +88,10 @@ public class FirestationDAO {
 	}
 	
 	/**
-	 * @param address
+	 * Remove the firestation of the firestation's list depending of the address 
+	 * and writing to the json file
+	 * 
+	 * @param address of the firestation
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -108,8 +120,10 @@ public class FirestationDAO {
 	}
 	
 	/**
+	 * Update a firestation in the firestation's list finding by the address and writing to the json file 
+	 * 
 	 * @param updateFirestation
-	 * @return
+	 * @return The object updated
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException

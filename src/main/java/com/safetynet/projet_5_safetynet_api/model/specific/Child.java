@@ -1,5 +1,8 @@
-package com.safetynet.projet_5_safetynet_api.specificModels;
+package com.safetynet.projet_5_safetynet_api.model.specific;
 
+/**
+ * The data's model for child and getter/setter methods for unitary endpoint "/childAlert?address=<address>"
+ */
 public class Child {
 
 	private String firstName;

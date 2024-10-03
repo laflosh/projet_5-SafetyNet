@@ -1,5 +1,8 @@
 package com.safetynet.projet_5_safetynet_api.model;
 
+/**
+ * The data's model for firestation and getter/setter methods
+ */
 public class Firestation {
 
 	private String address;

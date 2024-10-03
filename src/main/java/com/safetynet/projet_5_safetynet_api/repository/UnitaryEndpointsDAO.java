@@ -20,18 +20,21 @@ import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
 import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.model.Person;
-import com.safetynet.projet_5_safetynet_api.specificModels.Child;
-import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
-import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
-import com.safetynet.projet_5_safetynet_api.specificModels.Parent;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonSpecificInfo;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordPhone;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
+import com.safetynet.projet_5_safetynet_api.model.specific.Child;
+import com.safetynet.projet_5_safetynet_api.model.specific.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.model.specific.HouseMember;
+import com.safetynet.projet_5_safetynet_api.model.specific.Parent;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonSpecificInfo;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonWithMedicalrecordEmail;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonWithMedicalrecordPhone;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonsWithCount;
 import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
 
+/**
+ * Class for managing the data about the unitary endpoints 
+ */
 @Repository
 public class UnitaryEndpointsDAO {
 	
@@ -47,6 +50,8 @@ public class UnitaryEndpointsDAO {
 	List<Medicalrecord> medicalrecords = null;
 	
 	/**
+	 * Recovers all the data with DataManager object
+	 * 
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -67,6 +72,9 @@ public class UnitaryEndpointsDAO {
 	}
 
 	/**
+	 * Recovers all the person with the same address as the firestation depending of the firestation number in parameter
+	 * During the process, a count of the child and adult will be made
+	 * 
 	 * @param stationNumber
 	 * @return PersonWithCount
 	 * @throws ParseException 
@@ -160,8 +168,11 @@ public class UnitaryEndpointsDAO {
 	}
 
 	/**
+	 * If it exist, recovers all the children with the same address as the parameter
+	 * If they have parents, return it too
+	 * 
 	 * @param address
-	 * @return
+	 * @return HouseMember
 	 * @throws ParseException
 	 */
 	public HouseMember getAllChildrenDependingOnTheAddress(String address) throws ParseException {
@@ -226,8 +237,11 @@ public class UnitaryEndpointsDAO {
 	}
 
 	/**
+	 * Recovers all the phone numbers of the persons who have the same address as the firestation
+	 * depending of the station number parameter
+	 * 
 	 * @param firestationNumber
-	 * @return
+	 * @return A list of phone number
 	 */
 	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(int firestationNumber) {
 		
@@ -265,8 +279,10 @@ public class UnitaryEndpointsDAO {
 	}
 	
 	/**
+	 * Recovers all the persons informations living at the same address as the parameter and the firestation
+	 * 
 	 * @param address
-	 * @return
+	 * @return FirestationWithPersons
 	 */
 	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(String address) {
 
@@ -323,8 +339,10 @@ public class UnitaryEndpointsDAO {
 	}
 	
 	/**
-	 * @param stationNumbers
-	 * @return
+	 * Recovers all the persons informations and their firestation depending of the station number
+	 * 
+	 * @param A list of stationNumbers
+	 * @return A list of FirestationWithPersons
 	 */
 	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(Integer[] stationNumbers) {
 		
@@ -391,8 +409,10 @@ public class UnitaryEndpointsDAO {
 	}
 	
 	/**
+	 * Recovers all the persons informations with the same lastname as the parameter
+	 * 
 	 * @param lastName
-	 * @return
+	 * @return A list of PersonWithMedicalrecordEmail
 	 */
 	public List<PersonWithMedicalrecordEmail> getAllInformationsOnAPersonDependingLastName(String lastName) {
 
@@ -432,8 +452,10 @@ public class UnitaryEndpointsDAO {
 
 
 	/**
+	 * Recovers all the email address of the persons living in the city parameter
+	 * 
 	 * @param city
-	 * @return
+	 * @return A list of email
 	 */
 	public List<String> getAllEmailAddressDependingOfTheCity(String city) {
 		

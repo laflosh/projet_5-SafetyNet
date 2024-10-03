@@ -18,6 +18,9 @@ import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
 
+/**
+ * Class for managing the data about medicalrecord of the CRUD methods
+ */
 @Repository
 public class MedicalrecordDAO {
 
@@ -29,6 +32,8 @@ public class MedicalrecordDAO {
 	ListOfElements elements = null;
 	
 	/**
+	 * Recovers all the data with DataManager object
+	 * 
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -46,7 +51,9 @@ public class MedicalrecordDAO {
 	}
 	
 	/**
-	 * @return
+	 * Return the list of medicalrecord in the object ListOfElements
+	 * 
+	 * @return A list of medicalrecords
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -59,8 +66,10 @@ public class MedicalrecordDAO {
 	}
 	
 	/**
-	 * @param medicalrecord
-	 * @return
+	 * Add a object medicalrecord in the medicalrecord's list and writing to the json file
+	 * 
+	 * @param A object medicalrecord
+	 * @return The object created
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -78,8 +87,11 @@ public class MedicalrecordDAO {
 	}
 
 	/**
-	 * @param firstName
-	 * @param lastName
+	 * Delete a medicalrecord in the medicalrecord's list depending of the firstname and the lastname 
+	 * and wrinting to the json file
+	 * 
+	 * @param firstName of a medicalrecord
+	 * @param lastName of a medicalrecord
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -108,8 +120,11 @@ public class MedicalrecordDAO {
 	}
 
 	/**
+	 * Update a medicalrecord in the medicalred's list finding by the firstname and lastname
+	 * and writing to the json file
+	 * 
 	 * @param updateMedicalrecord
-	 * @return
+	 * @return The object updated
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException

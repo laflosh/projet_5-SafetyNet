@@ -18,6 +18,9 @@ import com.safetynet.projet_5_safetynet_api.util.DataManager;
 
 import jakarta.annotation.PostConstruct;
 
+/**
+ * Class for managing the data about person of the CRUD methods
+ */
 @Repository
 public class PersonDAO {
 
@@ -29,6 +32,8 @@ public class PersonDAO {
 	ListOfElements elements = null;
 	
 	/**
+	 * Recovers all the data with DataManager object
+	 * 
 	 * @throws IOException 
 	 * @throws DatabindException 
 	 * @throws StreamReadException 
@@ -47,7 +52,9 @@ public class PersonDAO {
 	}
 	
 	/**
-	 * @return
+	 * Return the list of persons of the ListOfElements's object
+	 * 
+	 * @return A list of persons
 	 * @throws IOException 
 	 * @throws DatabindException 
 	 * @throws StreamReadException 
@@ -59,6 +66,15 @@ public class PersonDAO {
 		
 	}
 
+	/**
+	 * Add a object person in the person's list and writing to the json file
+	 * 
+	 * @param A object person
+	 * @return The object created
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	public Person savePerson(Person person) throws StreamWriteException, DatabindException, IOException {
 		
 		List<Person> persons = elements.getPersons();
@@ -71,20 +87,20 @@ public class PersonDAO {
 		return person;
 		
 	}
-	
+
 	/**
-	 * @param deletePerson
-	 * @throws IOException 
-	 * @throws DatabindException 
-	 * @throws StreamWriteException 
+	 * Delete a person in the person's list depending of the fristname and the lastname 
+	 * and wrinting to the json file
+	 * 
+	 * @param firstName of a person
+	 * @param lastName of a person
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
 	 */
 	public void deletePerson(String firstName,String lastName) throws StreamWriteException, DatabindException, IOException {
 
 		List<Person> persons = elements.getPersons();
-		
-		//persons.removeIf(person -> person.getFirstName().equals(firstName) && person.getLastName().equals(lastName));
-		
-		//persons.stream().forEach(null);
 		
 		Iterator<Person> personsIterator = persons.iterator();
 		
@@ -106,8 +122,11 @@ public class PersonDAO {
 	}
 	
 	/**
+	 * Update a person object in the person's list finding by the firstname and the lastname 
+	 * and wrinting to the json file
+	 * 
 	 * @param updatePerson
-	 * @return
+	 * @return the object updated
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException

@@ -24,6 +24,9 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.safetynet.projet_5_safetynet_api.model.Person;
 import com.safetynet.projet_5_safetynet_api.service.PersonService;
 
+/**
+ * The controller is for the management of the CRUD methods for person
+ */
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -32,7 +35,9 @@ public class PersonController {
 	PersonService personService;
 	
 	/**
-	 * @return
+	 * Recovers all persons in the json file
+	 * 
+	 * @return A List of persons
 	 * @throws IOException 
 	 * @throws DatabindException 
 	 * @throws StreamReadException 
@@ -46,9 +51,11 @@ public class PersonController {
 	}
 	
 	/**
-	 * @param person
+	 * Create a person in the json file and return it
+	 * 
+	 * @param A object person
 	 * @param ucb
-	 * @return
+	 * @return The object created
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -74,8 +81,10 @@ public class PersonController {
 	
 
 	/**
-	 * @param firstName
-	 * @param lastName
+	 * Delete a object person depending of the firstname and lastname
+	 * 
+	 * @param firstName of a person
+	 * @param lastName of a person
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -89,8 +98,10 @@ public class PersonController {
 	}
 	
 	/**
-	 * @param person
-	 * @return
+	 * Update a person in the json file and return it
+	 * 
+	 * @param A modify object person
+	 * @return The person updated
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException

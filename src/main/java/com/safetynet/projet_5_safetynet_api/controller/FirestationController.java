@@ -24,6 +24,9 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.safetynet.projet_5_safetynet_api.model.Firestation;
 import com.safetynet.projet_5_safetynet_api.service.FirestationService;
 
+/**
+ * The controller is for the management of the CRUD methods for firestation
+ */
 @RestController
 @RequestMapping("/firestation")
 public class FirestationController {
@@ -32,7 +35,9 @@ public class FirestationController {
 	FirestationService firestationService;
 	
 	/**
-	 * @return
+	 * Recovers all firestation and return it
+	 * 
+	 * @return A List of firestations
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -46,9 +51,11 @@ public class FirestationController {
 	}
 	
 	/**
-	 * @param firestation
+	 * Create a firestation object in the json file and return it
+	 * 
+	 * @param A object firestation
 	 * @param ucb
-	 * @return
+	 * @return the firestation created
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -73,7 +80,9 @@ public class FirestationController {
 	}
 	
 	/**
-	 * @param address
+	 * Delete a firestation in the json file depending of the address
+	 * 
+	 * @param the address of the firestation
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -87,8 +96,10 @@ public class FirestationController {
 	}
 	
 	/**
-	 * @param firestation
-	 * @return
+	 * Update a firestation in the json file and return it
+	 * 
+	 * @param A modify object firestation
+	 * @return the firestation updated
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException

@@ -7,7 +7,7 @@ import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.model.Person;
 
 /**
- * 
+ * This class is for handling all the data of the json file and manage it
  */
 public class ListOfElements {
 

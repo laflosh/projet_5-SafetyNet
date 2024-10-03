@@ -14,6 +14,10 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 
+/**
+ * The class manage the tool Jackson with the ObjectMapper object for 
+ * the two methods for reading the json file and writing in the json file
+ */
 @Component
 public class DataManager {
 	
@@ -26,6 +30,13 @@ public class DataManager {
 	@Autowired
 	ObjectMapper objectMapper;
 	
+	/**
+	 * The method is about reading the data in the json file and return it in a object ListOfElements
+	 * @return A ListOfElements with all the data in the Json file
+	 * @throws StreamReadException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	public  ListOfElements getAllData() throws StreamReadException, DatabindException, IOException{
 		
 		if(elements == null) {
@@ -38,6 +49,13 @@ public class DataManager {
 
 	}
 	
+	/**
+	 * The method is about writing in the json file all the modify data
+	 * @param A ListOfElements for writing elements
+	 * @throws StreamWriteException
+	 * @throws DatabindException
+	 * @throws IOException
+	 */
 	public void writeData(ListOfElements elements) throws StreamWriteException, DatabindException, IOException {
 		
 		logger.info("Saving all the data in the JSON file.");

@@ -1,5 +1,8 @@
 package com.safetynet.projet_5_safetynet_api.model;
 
+/**
+ * The data's model for medicalrecord and getter/setter methods
+ */
 public class Medicalrecord {
 
 	private String firstName;

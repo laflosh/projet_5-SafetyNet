@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.safetynet.projet_5_safetynet_api.model.specific.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.model.specific.HouseMember;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonWithMedicalrecordEmail;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonsWithCount;
 import com.safetynet.projet_5_safetynet_api.service.UnitaryEndpointsService;
-import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
-import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
 
+/**
+ * The controller is about the management of the unitary endpoints
+ */
 @RestController
 public class UnitaryEndpointsController {
 
@@ -24,8 +27,10 @@ public class UnitaryEndpointsController {
 	UnitaryEndpointsService unitaryEndpointsService;
 	
 	/**
+	 * Recovers all the persons depending of the station number with a count of child and adult and return it
+	 * 
 	 * @param stationNumber
-	 * @return
+	 * @return A list of persons
 	 * @throws ParseException 
 	 */
 	@GetMapping("/firestation")
@@ -37,8 +42,10 @@ public class UnitaryEndpointsController {
 	}
 	
 	/**
+	 * Recovers all the children and their housemember if they exist and return it, depending of an address
+	 * 
 	 * @param address
-	 * @return
+	 * @return A object HouseMember with child(ren) and their parents
 	 * @throws ParseException
 	 */
 	@GetMapping("/childAlert")
@@ -50,8 +57,10 @@ public class UnitaryEndpointsController {
 	}
 	
 	/**
+	 * Recovers all the phone number of persons depending of station number of firestation
+	 * 
 	 * @param firestation
-	 * @return
+	 * @return A list of phone numbers
 	 */
 	@GetMapping("/phoneAlert")
 	@ResponseStatus(code = HttpStatus.OK)
@@ -62,8 +71,10 @@ public class UnitaryEndpointsController {
 	}
 	
 	/**
+	 * Recovers all the persons with the same address as a firestation and the firestation
+	 * 
 	 * @param address
-	 * @return
+	 * @return A object FirestationWithPersons
 	 */
 	@GetMapping("/fire")
 	@ResponseStatus(code = HttpStatus.OK)
@@ -73,6 +84,12 @@ public class UnitaryEndpointsController {
 		
 	}
 	
+	/**
+	 * Recovers all the persons with their firestation depending of the station number of a firestation
+	 * 
+	 * @param A list of stationNumbers
+	 * @return A list of FirestationWithPersons
+	 */
 	@GetMapping("/flood/stations")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers){
@@ -82,8 +99,10 @@ public class UnitaryEndpointsController {
 	}
 	
 	/**
-	 * @param lastName
-	 * @return
+	 * Recovers all the persons and their information depending of a lastname
+	 * 
+	 * @param lastName of a person
+	 * @return A list of person
 	 */
 	@GetMapping("/{lastName}")
 	@ResponseStatus(code = HttpStatus.OK)
@@ -94,8 +113,10 @@ public class UnitaryEndpointsController {
 	}
 	
 	/**
+	 * Recovers all the email address depending of the city where they living
+	 * 
 	 * @param city
-	 * @return
+	 * @return A list of email
 	 */
 	@GetMapping("/communityEmail")
 	@ResponseStatus(code = HttpStatus.OK)

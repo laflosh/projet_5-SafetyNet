@@ -1,7 +1,11 @@
-package com.safetynet.projet_5_safetynet_api.specificModels;
+package com.safetynet.projet_5_safetynet_api.model.specific;
 
 import java.util.List;
 
+/**
+ * The data's model for person with count adult and child and getter/setter methods 
+ * for unitary endpoint "/firestation?stationNumber=<station_number>"
+ */
 public class PersonsWithCount {
 
 	private List<PersonSpecificInfo> persons;

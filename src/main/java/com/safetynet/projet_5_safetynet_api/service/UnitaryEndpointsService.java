@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.safetynet.projet_5_safetynet_api.model.specific.FirestationWithPersons;
+import com.safetynet.projet_5_safetynet_api.model.specific.HouseMember;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonWithMedicalrecordEmail;
+import com.safetynet.projet_5_safetynet_api.model.specific.PersonsWithCount;
 import com.safetynet.projet_5_safetynet_api.repository.UnitaryEndpointsDAO;
-import com.safetynet.projet_5_safetynet_api.specificModels.FirestationWithPersons;
-import com.safetynet.projet_5_safetynet_api.specificModels.HouseMember;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonsWithCount;
-import com.safetynet.projet_5_safetynet_api.specificModels.PersonWithMedicalrecordEmail;
 
 @Service
 public class UnitaryEndpointsService {

@@ -1,5 +1,10 @@
-package com.safetynet.projet_5_safetynet_api.specificModels;
+package com.safetynet.projet_5_safetynet_api.model.specific;
 
+/**
+ * The data's model for person specific info and getter/setter methods 
+ * for unitary endpoint "/fire?address=<address>" 
+ * and "/flood/stations?stations=<a list of station_numbers>"
+ */
 public class PersonWithMedicalrecordPhone {
 
 	private String firstName;

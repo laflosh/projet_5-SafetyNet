@@ -24,6 +24,9 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.safetynet.projet_5_safetynet_api.model.Medicalrecord;
 import com.safetynet.projet_5_safetynet_api.service.MedicalrecordService;
 
+/**
+ * The controller is for the management of the CRUD methods for medicalrecord
+ */
 @RestController
 @RequestMapping("/medicalrecord")
 public class MedicalrecordController {
@@ -32,7 +35,9 @@ public class MedicalrecordController {
 	MedicalrecordService medicalrecordService;
 	
 	/**
-	 * @return
+	 * Recovers all the medicalrecords and return it
+	 * 
+	 * @return A list of medicalrecords
 	 * @throws StreamReadException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -46,9 +51,11 @@ public class MedicalrecordController {
 	}
 	
 	/**
-	 * @param medicalrecord
+	 * Create a new medical record in the json file and return it
+	 * 
+	 * @param A object medicalrecord
 	 * @param ucb
-	 * @return
+	 * @return The object created 
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -73,8 +80,10 @@ public class MedicalrecordController {
 	}
 	
 	/**
-	 * @param firstName
-	 * @param lastName
+	 * Delete a medical record depending of the firstname and the lastname
+	 * 
+	 * @param firstName of the medicalrecord
+	 * @param lastName of the medicalrecord
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException
@@ -88,8 +97,10 @@ public class MedicalrecordController {
 	}
 	
 	/**
-	 * @param medicalrecord
-	 * @return
+	 * Update a medicalrecord in the json file and return it
+	 * 
+	 * @param A modify object medicalrecord
+	 * @return The object updated
 	 * @throws StreamWriteException
 	 * @throws DatabindException
 	 * @throws IOException

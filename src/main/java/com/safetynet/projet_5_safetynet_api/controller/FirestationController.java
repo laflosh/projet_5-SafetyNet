@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import com.safetynet.projet_5_safetynet_api.service.FirestationService;
 @RequestMapping("/firestation")
 public class FirestationController {
 
+	private static Logger logger = LogManager.getLogger("FirestationController");
+	
 	@Autowired
 	FirestationService firestationService;
 	
@@ -46,6 +50,7 @@ public class FirestationController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Firestation> getAllFirestations() throws StreamReadException, DatabindException, IOException{
 		
+		logger.info("Trying to acces to get all firestations");
 		return firestationService.getAllFirestations();
 		
 	}
@@ -63,6 +68,7 @@ public class FirestationController {
 	@PostMapping
 	public ResponseEntity<?> saveAFirestation(@RequestBody Firestation firestation, UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException{
 		
+		logger.info("Trying to save a firestation in json file");
 		if(firestation == null) {
 			
 			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "firestation is null").build();
@@ -91,6 +97,7 @@ public class FirestationController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteAFirestation(@RequestParam(required = false, value = "address") String address) throws StreamWriteException, DatabindException, IOException {
 		
+		logger.info("Trying to delete a firestation in the json file");
 		firestationService.deleteAFirestation(address);
 		
 	}
@@ -107,6 +114,7 @@ public class FirestationController {
 	@PutMapping
 	public ResponseEntity<?> updateAFirestation(@RequestBody Firestation firestation) throws StreamWriteException, DatabindException, IOException{
 		
+		logger.info("Trying to update a firestation in the json file");
 		if(firestation == null) {
 			
 			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "firestation is null").build();

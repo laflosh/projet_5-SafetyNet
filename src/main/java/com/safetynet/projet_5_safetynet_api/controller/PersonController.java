@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import com.safetynet.projet_5_safetynet_api.service.PersonService;
 @RequestMapping("/person")
 public class PersonController {
 
+	private static Logger logger = LogManager.getLogger("PersonController");
+	
 	@Autowired
 	PersonService personService;
 	
@@ -46,6 +50,7 @@ public class PersonController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Person> getPersons() throws StreamReadException, DatabindException, IOException{
 		
+		logger.info("Trying to acces to get all persons");
 		return personService.getPersons();
 		
 	}
@@ -63,6 +68,7 @@ public class PersonController {
 	@PostMapping
 	public ResponseEntity<?> savePerson(@RequestBody Person person, UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException {
 		
+		logger.info("Trying to save a person in the json file");
 		if(person == null) {
 			
 			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "person is null").build();
@@ -93,6 +99,7 @@ public class PersonController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public void deletePerson(@RequestParam(required = false, value = "firstName") String firstName,@RequestParam(required = false, value = "lastName") String lastName ) throws StreamWriteException, DatabindException, IOException{
 		
+		logger.info("Trying to delete a person in the json file");
 		personService.deletePerson(firstName,lastName);
 		
 	}
@@ -109,6 +116,7 @@ public class PersonController {
 	@PutMapping
 	public ResponseEntity<?> updatePerson(@RequestBody Person person) throws StreamWriteException, DatabindException, IOException{
 		
+		logger.info("Trying to update a person in the json file");
 		if(person == null) {
 			
 			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "person is null").build();

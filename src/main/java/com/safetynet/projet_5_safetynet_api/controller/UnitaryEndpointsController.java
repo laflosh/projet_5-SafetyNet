@@ -3,6 +3,8 @@ package com.safetynet.projet_5_safetynet_api.controller;
 import java.text.ParseException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,8 @@ import com.safetynet.projet_5_safetynet_api.service.UnitaryEndpointsService;
 @RestController
 public class UnitaryEndpointsController {
 
+	private static Logger logger = LogManager.getLogger("UnitaryEndpointsController");
+	
 	@Autowired
 	UnitaryEndpointsService unitaryEndpointsService;
 	
@@ -37,6 +41,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public PersonsWithCount getPersonsDependingOnTheStationNumber(@RequestParam(value = "stationNumber") int stationNumber) throws ParseException{
 		
+		logger.info("Trying to acces to get all persons depending of the firestation");
 		return unitaryEndpointsService.getPersonsDependingOnTheStationNumber(stationNumber);
 		
 	}
@@ -52,6 +57,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public HouseMember getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException{
 		
+		logger.info("Trying to acces to get all children and their parents depending the address");
 		return unitaryEndpointsService.getAllChildrenDependingOnTheAddress(address);
 		
 	}
@@ -66,6 +72,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(@RequestParam(value = "firestation") int firestation){
 		
+		logger.info("Trying to acces to get all phone numbers of persons depending of an address");
 		return unitaryEndpointsService.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);
 		
 	}
@@ -80,6 +87,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(@RequestParam(value = "address") String address){
 		
+		logger.info("Trying to acces to get all persons living near a firestation depending of an address");
 		return unitaryEndpointsService.getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(address);
 		
 	}
@@ -94,6 +102,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers){
 		
+		logger.info("Trying to acces to get all persons living near a firestation depending of a station number");
 		return unitaryEndpointsService.getAllPersonsByFirestationNumber(stationNumbers);
 		
 	}
@@ -108,6 +117,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<PersonWithMedicalrecordEmail> getAllInformationsOnAPersonDependingLastName(@PathVariable("lastName") String  lastName){
 		
+		logger.info("Trying to acces to get all persons informations depending the last name");
 		return unitaryEndpointsService.getAllInformationsOnAPersonDependingLastName(lastName);
 		
 	}
@@ -122,6 +132,7 @@ public class UnitaryEndpointsController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<String> getAllEmailAddressDependingOfTheCity(@RequestParam(value = "city") String city){
 		
+		logger.info("Trying to acces to get all email address of persons depending the city");
 		return unitaryEndpointsService.getAllEmailAddressDependingOfTheCity(city);
 		
 	}

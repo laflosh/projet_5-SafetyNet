@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import com.safetynet.projet_5_safetynet_api.service.MedicalrecordService;
 @RequestMapping("/medicalrecord")
 public class MedicalrecordController {
 
+	private static Logger logger = LogManager.getLogger("MedicalrecordController");
+	
 	@Autowired
 	MedicalrecordService medicalrecordService;
 	
@@ -46,6 +50,7 @@ public class MedicalrecordController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Medicalrecord> getAllMedicalrecords() throws StreamReadException, DatabindException, IOException{
 		
+		logger.info("Trying to acces to get all medicalrecords");
 		return medicalrecordService.getAllMedicalrecords();
 		
 	}
@@ -63,6 +68,7 @@ public class MedicalrecordController {
 	@PostMapping
 	public ResponseEntity<?> saveAMedicalrecord(@RequestBody Medicalrecord medicalrecord,  UriComponentsBuilder ucb) throws StreamWriteException, DatabindException, IOException{
 		
+		logger.info("Trying to save a medicalrecord in the json file");
 		if(medicalrecord == null) {
 			
 			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "medicalrecord is null").build();
@@ -92,6 +98,7 @@ public class MedicalrecordController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteAMedicalrecord(@RequestParam(required = false, value = "firstName") String firstName, @RequestParam(required = false, value = "lastName") String lastName) throws StreamWriteException, DatabindException, IOException {
 		
+		logger.info("Trying to delete a medicalrecord in the json file");
 		medicalrecordService.deleteAMedicalrecord(firstName, lastName);
 		
 	}
@@ -108,14 +115,15 @@ public class MedicalrecordController {
 	@PutMapping
 	public ResponseEntity<?> updateAMedicalRecord(@RequestBody Medicalrecord medicalrecord) throws StreamWriteException, DatabindException, IOException{
 		
-	if(medicalrecord == null) {
-			
-			return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "medicalrecord is null").build();
-			
-		} else {
-			
-			return ResponseEntity.ok().body(medicalrecordService.updateAMedicalRecord(medicalrecord));
-			
+		logger.info("Trying to update a medicalrecord in the json file");
+		if(medicalrecord == null) {
+				
+				return (ResponseEntity<?>) ResponseEntity.badRequest().header("error", "medicalrecord is null").build();
+				
+			} else {
+				
+				return ResponseEntity.ok().body(medicalrecordService.updateAMedicalRecord(medicalrecord));
+				
 		}
 		
 	}

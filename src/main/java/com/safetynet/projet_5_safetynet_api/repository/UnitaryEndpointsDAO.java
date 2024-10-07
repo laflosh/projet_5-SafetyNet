@@ -38,7 +38,7 @@ import jakarta.annotation.PostConstruct;
 @Repository
 public class UnitaryEndpointsDAO {
 	
-	private static Logger logger = LogManager.getLogger("UnitaryEndpointsDAO");
+	private static Logger logger = LogManager.getLogger(UnitaryEndpointsDAO.class);
 	
 	@Autowired
 	DataManager dataManager;

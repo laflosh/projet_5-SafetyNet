@@ -24,7 +24,7 @@ import jakarta.annotation.PostConstruct;
 @Repository
 public class MedicalrecordDAO {
 
-	private static Logger logger = LogManager.getLogger("MedicalrecordsDAO");
+	private static Logger logger = LogManager.getLogger(MedicalrecordDAO.class);
 	
 	@Autowired
 	DataManager dataManager;

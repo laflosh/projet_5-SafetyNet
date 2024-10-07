@@ -21,7 +21,7 @@ import com.safetynet.projet_5_safetynet_api.dto.ListOfElements;
 @Component
 public class DataManager {
 	
-	private static Logger logger = LogManager.getLogger("DataManager");
+	private static Logger logger = LogManager.getLogger(DataManager.class);
 
 	private String dataPath = "C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json";
 	

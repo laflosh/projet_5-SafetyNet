@@ -33,7 +33,7 @@ import com.safetynet.projet_5_safetynet_api.service.FirestationService;
 @RequestMapping("/firestation")
 public class FirestationController {
 
-	private static Logger logger = LogManager.getLogger("FirestationController");
+	private static final Logger logger = LogManager.getLogger(FirestationController.class);
 	
 	@Autowired
 	FirestationService firestationService;

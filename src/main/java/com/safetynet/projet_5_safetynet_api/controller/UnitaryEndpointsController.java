@@ -25,7 +25,7 @@ import com.safetynet.projet_5_safetynet_api.service.UnitaryEndpointsService;
 @RestController
 public class UnitaryEndpointsController {
 
-	private static Logger logger = LogManager.getLogger("UnitaryEndpointsController");
+	private static Logger logger = LogManager.getLogger(UnitaryEndpointsController.class);
 	
 	@Autowired
 	UnitaryEndpointsService unitaryEndpointsService;

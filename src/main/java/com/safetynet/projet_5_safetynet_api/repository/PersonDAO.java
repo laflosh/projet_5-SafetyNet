@@ -24,7 +24,7 @@ import jakarta.annotation.PostConstruct;
 @Repository
 public class PersonDAO {
 
-	private static Logger logger = LogManager.getLogger("PersonDAO");
+	private static Logger logger = LogManager.getLogger(PersonDAO.class);
 	
 	@Autowired
 	DataManager dataManager;

@@ -24,7 +24,7 @@ import jakarta.annotation.PostConstruct;
 @Repository
 public class FirestationDAO {
 
-	private static Logger logger = LogManager.getLogger("FirestationDAO");
+	private static Logger logger = LogManager.getLogger(FirestationDAO.class);
 	
 	@Autowired
 	DataManager dataManager;

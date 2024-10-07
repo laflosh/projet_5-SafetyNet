@@ -33,7 +33,7 @@ import com.safetynet.projet_5_safetynet_api.service.MedicalrecordService;
 @RequestMapping("/medicalrecord")
 public class MedicalrecordController {
 
-	private static Logger logger = LogManager.getLogger("MedicalrecordController");
+	private static Logger logger = LogManager.getLogger(MedicalrecordController.class);
 	
 	@Autowired
 	MedicalrecordService medicalrecordService;

@@ -33,7 +33,7 @@ import com.safetynet.projet_5_safetynet_api.service.PersonService;
 @RequestMapping("/person")
 public class PersonController {
 
-	private static Logger logger = LogManager.getLogger("PersonController");
+	private static Logger logger = LogManager.getLogger(PersonController.class);
 	
 	@Autowired
 	PersonService personService;

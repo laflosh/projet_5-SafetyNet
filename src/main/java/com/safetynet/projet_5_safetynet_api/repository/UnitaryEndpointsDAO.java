@@ -274,7 +274,7 @@ public class UnitaryEndpointsDAO {
 			
 		}
 		
-		logger.info("Return the phone numbers de^pending oh the firestation number given saved in the JSON file.");
+		logger.info("Return the phone numbers denpending oh the firestation number given saved in the JSON file.");
 		return phoneNumberList;
 	}
 	

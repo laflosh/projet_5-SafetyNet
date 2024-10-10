@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -23,7 +24,8 @@ public class DataManager {
 	
 	private static Logger logger = LogManager.getLogger(DataManager.class);
 
-	private String dataPath = "C:\\Workspace\\_Openclassrooms\\projet_formation_java\\projet_5\\projet_5_safetynet_api\\data.json";
+	@Value("${file.location}")
+	private String dataPath;
 	
 	ListOfElements elements = null;
 	

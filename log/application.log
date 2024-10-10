@@ -97,3 +97,198 @@ INFO Initializing API SafetyNet.
 2024-10-07T14:17:42.535+0200 INFO Trying to delete a person in the json file
 2024-10-07T14:17:42.535+0200 INFO Saving all the data in the JSON file.
 2024-10-07T14:17:42.536+0200 INFO The person is deleted in the JSON file.
+2024-10-10T10:50:16.425+0200 INFO Initializing API SafetyNet.
+2024-10-10T10:50:17.364+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 15768 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T10:50:17.368+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T10:50:19.842+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T10:50:19.845+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T10:50:19.847+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T10:50:19.850+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T10:50:20.301+0200 INFO Started Projet5SafetynetApiApplication in 3.656 seconds (process running for 10.055)
+2024-10-10T10:51:03.972+0200 INFO Trying to acces to get all persons
+2024-10-10T10:51:03.972+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T10:51:45.503+0200 INFO Trying to save a person in the json file
+2024-10-10T10:51:45.506+0200 INFO Saving all the data in the JSON file.
+2024-10-10T10:51:45.511+0200 INFO The person is saved in the JSON file.
+2024-10-10T10:52:41.680+0200 INFO Trying to update a person in the json file
+2024-10-10T10:52:41.680+0200 INFO Saving all the data in the JSON file.
+2024-10-10T10:52:41.681+0200 INFO The person is updated in the JSON file.
+2024-10-10T10:53:54.363+0200 INFO Trying to delete a person in the json file
+2024-10-10T10:53:54.363+0200 INFO Saving all the data in the JSON file.
+2024-10-10T10:53:54.364+0200 INFO The person is deleted in the JSON file.
+2024-10-10T10:54:12.158+0200 INFO Trying to save a person in the json file
+2024-10-10T10:54:12.159+0200 INFO Saving all the data in the JSON file.
+2024-10-10T10:54:12.160+0200 INFO The person is saved in the JSON file.
+2024-10-10T10:54:12.915+0200 INFO Trying to save a person in the json file
+2024-10-10T10:54:12.915+0200 INFO Saving all the data in the JSON file.
+2024-10-10T10:54:12.916+0200 INFO The person is saved in the JSON file.
+2024-10-10T10:54:20.853+0200 INFO Trying to delete a person in the json file
+2024-10-10T10:54:20.853+0200 INFO Saving all the data in the JSON file.
+2024-10-10T10:54:20.854+0200 INFO The person is deleted in the JSON file.
+2024-10-10T10:55:32.510+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T10:55:32.512+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T10:55:59.554+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T10:55:59.554+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T10:56:32.128+0200 INFO Trying to acces to get all persons living near a firestation depending of an address
+2024-10-10T10:56:32.129+0200 INFO Return all the Persons living in the same address and the firestation saved in the JSON file.
+2024-10-10T10:57:09.294+0200 INFO Trying to acces to get all email address of persons depending the city
+2024-10-10T10:57:09.294+0200 INFO Return all email address of persons in a city given saved in the JSON file.
+2024-10-10T11:52:23.974+0200 INFO Initializing API SafetyNet.
+2024-10-10T11:52:24.319+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 15376 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T11:52:24.325+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T11:52:25.403+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T11:52:25.405+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T11:52:25.407+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T11:52:25.410+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T11:52:25.780+0200 INFO Started Projet5SafetynetApiApplication in 1.745 seconds (process running for 2.511)
+2024-10-10T12:04:18.668+0200 INFO Trying to acces to get all persons
+2024-10-10T12:04:18.668+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T12:05:13.466+0200 INFO Trying to save a person in the json file
+2024-10-10T12:05:13.469+0200 INFO Saving all the data in the JSON file.
+2024-10-10T12:05:13.475+0200 INFO The person is saved in the JSON file.
+2024-10-10T12:05:58.169+0200 INFO Trying to update a person in the json file
+2024-10-10T12:05:58.169+0200 INFO Saving all the data in the JSON file.
+2024-10-10T12:05:58.171+0200 INFO The person is updated in the JSON file.
+2024-10-10T12:06:42.187+0200 INFO Trying to delete a person in the json file
+2024-10-10T12:06:42.188+0200 INFO Saving all the data in the JSON file.
+2024-10-10T12:06:42.189+0200 INFO The person is deleted in the JSON file.
+2024-10-10T12:07:31.621+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T12:07:31.623+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T12:07:50.062+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T12:07:50.063+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T15:06:23.517+0200 INFO Initializing API SafetyNet.
+2024-10-10T15:06:23.860+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 14292 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T15:06:23.863+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T15:06:24.917+0200 ERROR Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'firestationController': Unsatisfied dependency expressed through field 'firestationService': Error creating bean with name 'firestationService': Unsatisfied dependency expressed through field 'firestationDAO': Error creating bean with name 'firestationDAO': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971) ~[spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) [spring-boot-3.3.3.jar:3.3.3]
+	at com.safetynet.projet_5_safetynet_api.Projet5SafetynetApiApplication.main(Projet5SafetynetApiApplication.java:16) [classes/:?]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'firestationService': Unsatisfied dependency expressed through field 'firestationDAO': Error creating bean with name 'firestationDAO': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.1.12.jar:6.1.12]
+	... 20 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'firestationDAO': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:222) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1798) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.1.12.jar:6.1.12]
+	... 20 more
+Caused by: java.io.FileNotFoundException: \projet_5_sefetynet_api\data.json (Le chemin d’accès spécifié est introuvable)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[?:?]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216) ~[?:?]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157) ~[?:?]
+	at com.fasterxml.jackson.core.TokenStreamFactory._fileInputStream(TokenStreamFactory.java:318) ~[jackson-core-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:1219) ~[jackson-core-2.17.2.jar:2.17.2]
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3713) ~[jackson-databind-2.17.2.jar:2.17.2]
+	at com.safetynet.projet_5_safetynet_api.util.DataManager.getAllData(DataManager.java:46) ~[classes/:?]
+	at com.safetynet.projet_5_safetynet_api.repository.FirestationDAO.initData(FirestationDAO.java:46) ~[classes/:?]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1798) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.1.12.jar:6.1.12]
+	... 20 more
+2024-10-10T15:08:21.734+0200 INFO Initializing API SafetyNet.
+2024-10-10T15:08:22.076+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 16256 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T15:08:22.079+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T15:08:23.084+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:08:23.086+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:08:23.088+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:08:23.091+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:08:23.444+0200 INFO Started Projet5SafetynetApiApplication in 1.65 seconds (process running for 2.387)
+2024-10-10T15:09:15.201+0200 INFO Trying to acces to get all persons
+2024-10-10T15:09:15.201+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T15:09:18.417+0200 INFO Trying to save a person in the json file
+2024-10-10T15:09:18.420+0200 INFO Saving all the data in the JSON file.
+2024-10-10T15:09:18.424+0200 INFO The person is saved in the JSON file.
+2024-10-10T15:09:21.009+0200 INFO Trying to update a person in the json file
+2024-10-10T15:09:21.009+0200 INFO Saving all the data in the JSON file.
+2024-10-10T15:09:21.011+0200 INFO The person is updated in the JSON file.
+2024-10-10T15:09:40.686+0200 INFO Trying to delete a person in the json file
+2024-10-10T15:09:40.686+0200 INFO Saving all the data in the JSON file.
+2024-10-10T15:09:40.687+0200 INFO The person is deleted in the JSON file.
+2024-10-10T15:10:32.102+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T15:10:32.105+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.

@@ -292,3 +292,162 @@ Caused by: java.io.FileNotFoundException: \projet_5_sefetynet_api\data.json (Le 
 2024-10-10T15:09:40.687+0200 INFO The person is deleted in the JSON file.
 2024-10-10T15:10:32.102+0200 INFO Trying to acces to get all persons depending of the firestation
 2024-10-10T15:10:32.105+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T15:53:06.759+0200 INFO Initializing API SafetyNet.
+2024-10-10T15:53:07.096+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 16144 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T15:53:07.098+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T15:53:08.127+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:08.129+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:08.131+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:08.134+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:08.480+0200 INFO Started Projet5SafetynetApiApplication in 1.662 seconds (process running for 2.372)
+2024-10-10T15:53:16.744+0200 ERROR Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.Error: Unresolved compilation problems: 
+	Unhandled exception type StreamReadException
+	Unhandled exception type DatabindException
+	Unhandled exception type IOException
+] with root cause
+java.lang.Error: Unresolved compilation problems: 
+	Unhandled exception type StreamReadException
+	Unhandled exception type DatabindException
+	Unhandled exception type IOException
+
+	at com.safetynet.projet_5_safetynet_api.controller.UnitaryEndpointsController.getPersonsDependingOnTheStationNumber(UnitaryEndpointsController.java:45) ~[classes/:?]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.28.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.12.jar:6.1.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.28.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) [tomcat-embed-core-10.1.28.jar:10.1.28]
+	at java.base/java.lang.Thread.run(Thread.java:840) [?:?]
+2024-10-10T15:53:50.886+0200 INFO Initializing API SafetyNet.
+2024-10-10T15:53:51.220+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 16708 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T15:53:51.222+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T15:53:52.228+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:52.230+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:52.232+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:52.235+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T15:53:52.594+0200 INFO Started Projet5SafetynetApiApplication in 1.649 seconds (process running for 2.363)
+2024-10-10T15:53:56.271+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T15:53:56.272+0200 INFO Return all firestations saved in the JSON file.
+2024-10-10T15:53:56.272+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T15:53:56.272+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T15:53:56.274+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T16:40:34.852+0200 INFO Initializing API SafetyNet.
+2024-10-10T16:40:35.189+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 9084 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T16:40:35.191+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T16:40:36.214+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T16:40:36.216+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T16:40:36.218+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T16:40:36.221+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T16:40:36.591+0200 INFO Started Projet5SafetynetApiApplication in 1.678 seconds (process running for 2.411)
+2024-10-10T16:40:41.185+0200 INFO Trying to acces to get all persons depending of the firestation
+2024-10-10T16:40:41.186+0200 INFO Return all firestations saved in the JSON file.
+2024-10-10T16:40:41.186+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T16:40:41.186+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T16:40:41.188+0200 INFO Return all the Persons with the same address of the stationNumber saved in the JSON file.
+2024-10-10T17:27:05.724+0200 INFO Initializing API SafetyNet.
+2024-10-10T17:27:06.063+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 12788 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T17:27:06.066+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T17:27:07.089+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:27:07.091+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:27:07.093+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:27:07.097+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:27:07.464+0200 INFO Started Projet5SafetynetApiApplication in 1.679 seconds (process running for 2.408)
+2024-10-10T17:27:07.851+0200 INFO Trying to acces to get all children and their parents depending the address
+2024-10-10T17:27:07.851+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:07.851+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:07.854+0200 INFO Return all children depending of the address and their house members saved in the JSON file.
+2024-10-10T17:27:13.038+0200 INFO Trying to acces to get all phone numbers of persons depending of an address
+2024-10-10T17:27:13.038+0200 INFO Return all firestations saved in the JSON file.
+2024-10-10T17:27:13.038+0200 INFO Return the phone numbers denpending oh the firestation number given saved in the JSON file.
+2024-10-10T17:27:13.038+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:17.934+0200 INFO Trying to acces to get all persons living near a firestation depending of an address
+2024-10-10T17:27:17.934+0200 INFO Return all firestations saved in the JSON file.
+2024-10-10T17:27:17.934+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:17.934+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:17.934+0200 INFO Return all the Persons living in the same address and the firestation saved in the JSON file.
+2024-10-10T17:27:24.684+0200 INFO Trying to acces to get all email address of persons depending the city
+2024-10-10T17:27:24.684+0200 INFO Return all email address of persons in a city given saved in the JSON file.
+2024-10-10T17:27:24.684+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.177+0200 INFO Trying to acces to get all persons living near a firestation depending of a station number
+2024-10-10T17:27:32.177+0200 INFO Return all firestations saved in the JSON file.
+2024-10-10T17:27:32.177+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.177+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.177+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.178+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.179+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.179+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.179+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.179+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:27:32.179+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:27:32.179+0200 INFO Return all persons saved in the JSON file.
+2024-10-10T17:32:24.592+0200 INFO Initializing API SafetyNet.
+2024-10-10T17:32:24.971+0200 INFO Starting Projet5SafetynetApiApplication using Java 17.0.11 with PID 3492 (C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api\target\classes started by Florent Lecointre in C:\Workspace\_Openclassrooms\projet_formation_java\projet_5\projet_5_safetynet_api)
+2024-10-10T17:32:24.974+0200 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-10T17:32:26.041+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:32:26.043+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:32:26.045+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:32:26.049+0200 INFO Fetching all data saved in the JSON file.
+2024-10-10T17:32:26.408+0200 INFO Started Projet5SafetynetApiApplication in 1.743 seconds (process running for 2.495)
+2024-10-10T17:32:31.175+0200 INFO Trying to acces to get all persons informations depending the last name
+2024-10-10T17:32:31.175+0200 INFO Return all the Persons informations saved in the JSON file.
+2024-10-10T17:32:31.175+0200 INFO Return all medicalrecords saved in the JSON file.
+2024-10-10T17:32:31.175+0200 INFO Return all persons saved in the JSON file.

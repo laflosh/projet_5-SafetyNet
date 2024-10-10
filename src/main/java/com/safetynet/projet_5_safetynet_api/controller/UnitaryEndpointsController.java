@@ -1,5 +1,6 @@
 package com.safetynet.projet_5_safetynet_api.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.safetynet.projet_5_safetynet_api.model.specific.FirestationWithPersons;
 import com.safetynet.projet_5_safetynet_api.model.specific.HouseMember;
 import com.safetynet.projet_5_safetynet_api.model.specific.PersonWithMedicalrecordEmail;
@@ -36,10 +39,13 @@ public class UnitaryEndpointsController {
 	 * @param stationNumber
 	 * @return A list of persons
 	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/firestation")
 	@ResponseStatus(code = HttpStatus.OK)
-	public PersonsWithCount getPersonsDependingOnTheStationNumber(@RequestParam(value = "stationNumber") int stationNumber) throws ParseException{
+	public PersonsWithCount getPersonsDependingOnTheStationNumber(@RequestParam(value = "stationNumber") int stationNumber) throws ParseException, StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all persons depending of the firestation");
 		return unitaryEndpointsService.getPersonsDependingOnTheStationNumber(stationNumber);
@@ -52,10 +58,13 @@ public class UnitaryEndpointsController {
 	 * @param address
 	 * @return A object HouseMember with child(ren) and their parents
 	 * @throws ParseException
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/childAlert")
 	@ResponseStatus(code = HttpStatus.OK)
-	public HouseMember getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException{
+	public HouseMember getAllChildrenDependingOnTheAddress(@RequestParam(value = "address") String address) throws ParseException, StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all children and their parents depending the address");
 		return unitaryEndpointsService.getAllChildrenDependingOnTheAddress(address);
@@ -67,10 +76,13 @@ public class UnitaryEndpointsController {
 	 * 
 	 * @param firestation
 	 * @return A list of phone numbers
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/phoneAlert")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(@RequestParam(value = "firestation") int firestation){
+	public List<String> getAllThePhoneNumberDependingOnTheFirestationNumber(@RequestParam(value = "firestation") int firestation) throws StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all phone numbers of persons depending of an address");
 		return unitaryEndpointsService.getAllThePhoneNumberDependingOnTheFirestationNumber(firestation);
@@ -82,10 +94,13 @@ public class UnitaryEndpointsController {
 	 * 
 	 * @param address
 	 * @return A object FirestationWithPersons
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/fire")
 	@ResponseStatus(code = HttpStatus.OK)
-	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(@RequestParam(value = "address") String address){
+	public FirestationWithPersons getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(@RequestParam(value = "address") String address) throws StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all persons living near a firestation depending of an address");
 		return unitaryEndpointsService.getAllPersonsLivingAndTheStationNumberDependingOfTheAddress(address);
@@ -97,10 +112,13 @@ public class UnitaryEndpointsController {
 	 * 
 	 * @param A list of stationNumbers
 	 * @return A list of FirestationWithPersons
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/flood/stations")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers){
+	public List<FirestationWithPersons> getAllPersonsByFirestationNumber(@RequestParam(value = "stations")Integer[] stationNumbers) throws StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all persons living near a firestation depending of a station number");
 		return unitaryEndpointsService.getAllPersonsByFirestationNumber(stationNumbers);
@@ -112,10 +130,13 @@ public class UnitaryEndpointsController {
 	 * 
 	 * @param lastName of a person
 	 * @return A list of person
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/{lastName}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<PersonWithMedicalrecordEmail> getAllInformationsOnAPersonDependingLastName(@PathVariable("lastName") String  lastName){
+	public List<PersonWithMedicalrecordEmail> getAllInformationsOnAPersonDependingLastName(@PathVariable("lastName") String  lastName) throws StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all persons informations depending the last name");
 		return unitaryEndpointsService.getAllInformationsOnAPersonDependingLastName(lastName);
@@ -127,10 +148,13 @@ public class UnitaryEndpointsController {
 	 * 
 	 * @param city
 	 * @return A list of email
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
 	 */
 	@GetMapping("/communityEmail")
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<String> getAllEmailAddressDependingOfTheCity(@RequestParam(value = "city") String city){
+	public List<String> getAllEmailAddressDependingOfTheCity(@RequestParam(value = "city") String city) throws StreamReadException, DatabindException, IOException{
 		
 		logger.info("Trying to acces to get all email address of persons depending the city");
 		return unitaryEndpointsService.getAllEmailAddressDependingOfTheCity(city);
